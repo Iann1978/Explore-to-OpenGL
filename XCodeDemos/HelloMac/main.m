@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "AppDelegate.h"
+#import "OpenGLView.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
@@ -21,12 +22,18 @@ int main(int argc, const char * argv[]) {
         NSBackingStoreType backingStoreStyle = NSBackingStoreBuffered;
         NSWindow *win = [[NSWindow alloc] initWithContentRect:rc styleMask:uiStyle backing:backingStoreStyle defer:NO];
         [win setTitle:@"Hello Mac"];
-        [win makeKeyAndOrderFront:app];
+        [win makeKeyAndOrderFront:win];
         [win makeMainWindow];
+        
+        // Set an OpenGL view to a window.
+        OpenGLView *view = [[OpenGLView alloc] initWithFrame:rc];
+        [win setContentView:view];
         
         // Set delegate to application
         AppDelegate *appDelegate = [[AppDelegate alloc] init];
         [app setDelegate:appDelegate];
+        
+        
         
         [app run];
         
