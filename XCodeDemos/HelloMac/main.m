@@ -1,6 +1,6 @@
 //
 //  main.m
-//  XCodeDemos
+//  HelloMac
 //
 //  Created by iann on 2019/4/12.
 //  Copyright © 2019 iann. All rights reserved.

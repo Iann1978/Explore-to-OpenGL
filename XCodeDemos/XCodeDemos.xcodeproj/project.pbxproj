@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BADA1FAB226028B00064ED4E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BADA1FAA226028B00064ED4E /* main.m */; };
+		BADA1FB822602F2A0064ED4E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BADA1FB722602F2A0064ED4E /* main.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		BADA1FA5226028B00064ED4E /* CopyFiles */ = {
+		BADA1FB322602F2A0064ED4E /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -23,12 +23,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		BADA1FA7226028B00064ED4E /* XCodeDemos */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = XCodeDemos; sourceTree = BUILT_PRODUCTS_DIR; };
-		BADA1FAA226028B00064ED4E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		BADA1FB522602F2A0064ED4E /* HelloMac */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HelloMac; sourceTree = BUILT_PRODUCTS_DIR; };
+		BADA1FB722602F2A0064ED4E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		BADA1FA4226028B00064ED4E /* Frameworks */ = {
+		BADA1FB222602F2A0064ED4E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -41,7 +41,7 @@
 		BADA1F9E226028B00064ED4E = {
 			isa = PBXGroup;
 			children = (
-				BADA1FA9226028B00064ED4E /* XCodeDemos */,
+				BADA1FB622602F2A0064ED4E /* HelloMac */,
 				BADA1FA8226028B00064ED4E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -49,37 +49,37 @@
 		BADA1FA8226028B00064ED4E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BADA1FA7226028B00064ED4E /* XCodeDemos */,
+				BADA1FB522602F2A0064ED4E /* HelloMac */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		BADA1FA9226028B00064ED4E /* XCodeDemos */ = {
+		BADA1FB622602F2A0064ED4E /* HelloMac */ = {
 			isa = PBXGroup;
 			children = (
-				BADA1FAA226028B00064ED4E /* main.m */,
+				BADA1FB722602F2A0064ED4E /* main.m */,
 			);
-			path = XCodeDemos;
+			path = HelloMac;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		BADA1FA6226028B00064ED4E /* XCodeDemos */ = {
+		BADA1FB422602F2A0064ED4E /* HelloMac */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BADA1FAE226028B00064ED4E /* Build configuration list for PBXNativeTarget "XCodeDemos" */;
+			buildConfigurationList = BADA1FB922602F2A0064ED4E /* Build configuration list for PBXNativeTarget "HelloMac" */;
 			buildPhases = (
-				BADA1FA3226028B00064ED4E /* Sources */,
-				BADA1FA4226028B00064ED4E /* Frameworks */,
-				BADA1FA5226028B00064ED4E /* CopyFiles */,
+				BADA1FB122602F2A0064ED4E /* Sources */,
+				BADA1FB222602F2A0064ED4E /* Frameworks */,
+				BADA1FB322602F2A0064ED4E /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = XCodeDemos;
-			productName = XCodeDemos;
-			productReference = BADA1FA7226028B00064ED4E /* XCodeDemos */;
+			name = HelloMac;
+			productName = HelloMac;
+			productReference = BADA1FB522602F2A0064ED4E /* HelloMac */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -91,7 +91,7 @@
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = iann;
 				TargetAttributes = {
-					BADA1FA6226028B00064ED4E = {
+					BADA1FB422602F2A0064ED4E = {
 						CreatedOnToolsVersion = 10.2;
 					};
 				};
@@ -108,17 +108,17 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				BADA1FA6226028B00064ED4E /* XCodeDemos */,
+				BADA1FB422602F2A0064ED4E /* HelloMac */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		BADA1FA3226028B00064ED4E /* Sources */ = {
+		BADA1FB122602F2A0064ED4E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BADA1FAB226028B00064ED4E /* main.m in Sources */,
+				BADA1FB822602F2A0064ED4E /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,7 +236,7 @@
 			};
 			name = Release;
 		};
-		BADA1FAF226028B00064ED4E /* Debug */ = {
+		BADA1FBA22602F2A0064ED4E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -244,7 +244,7 @@
 			};
 			name = Debug;
 		};
-		BADA1FB0226028B00064ED4E /* Release */ = {
+		BADA1FBB22602F2A0064ED4E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -264,11 +264,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BADA1FAE226028B00064ED4E /* Build configuration list for PBXNativeTarget "XCodeDemos" */ = {
+		BADA1FB922602F2A0064ED4E /* Build configuration list for PBXNativeTarget "HelloMac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BADA1FAF226028B00064ED4E /* Debug */,
-				BADA1FB0226028B00064ED4E /* Release */,
+				BADA1FBA22602F2A0064ED4E /* Debug */,
+				BADA1FBB22602F2A0064ED4E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
