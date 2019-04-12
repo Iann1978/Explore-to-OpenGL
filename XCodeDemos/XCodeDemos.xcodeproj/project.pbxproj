@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA775B172260399C00F0EB77 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA775B162260399C00F0EB77 /* AppDelegate.m */; };
 		BADA1FB822602F2A0064ED4E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BADA1FB722602F2A0064ED4E /* main.m */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +24,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BA775B152260399C00F0EB77 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		BA775B162260399C00F0EB77 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		BADA1FB522602F2A0064ED4E /* HelloMac */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HelloMac; sourceTree = BUILT_PRODUCTS_DIR; };
 		BADA1FB722602F2A0064ED4E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -58,6 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				BADA1FB722602F2A0064ED4E /* main.m */,
+				BA775B152260399C00F0EB77 /* AppDelegate.h */,
+				BA775B162260399C00F0EB77 /* AppDelegate.m */,
 			);
 			path = HelloMac;
 			sourceTree = "<group>";
@@ -118,6 +123,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA775B172260399C00F0EB77 /* AppDelegate.m in Sources */,
 				BADA1FB822602F2A0064ED4E /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
