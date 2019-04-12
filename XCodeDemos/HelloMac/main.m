@@ -29,6 +29,10 @@ int main(int argc, const char * argv[]) {
         OpenGLView *view = [[OpenGLView alloc] initWithFrame:rc];
         [win setContentView:view];
         
+        
+        
+
+
         // Set delegate to application
         AppDelegate *appDelegate = [[AppDelegate alloc] init];
         [app setDelegate:appDelegate];
