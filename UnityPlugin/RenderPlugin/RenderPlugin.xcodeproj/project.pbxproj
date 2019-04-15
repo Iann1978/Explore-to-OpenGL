@@ -8,13 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		BA1BDF432264280800B76576 /* RenderPlugin.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = BAAF1B55226422F6009356FB /* RenderPlugin.bundle */; };
+		BA1BDF4522642D2500B76576 /* RenderPlugin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA1BDF4422642D2500B76576 /* RenderPlugin.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		BA1BDF42226427C500B76576 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = "/Users/iann/git/Explore-to-OpenGL/UnityPlugin/UnityProject/Assets/Plugin";
+			dstPath = "/Users/iann/git/Explore-to-OpenGL/UnityPlugin/UnityProject/Assets/Plugins";
 			dstSubfolderSpec = 0;
 			files = (
 				BA1BDF432264280800B76576 /* RenderPlugin.bundle in CopyFiles */,
@@ -24,6 +25,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BA1BDF4422642D2500B76576 /* RenderPlugin.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RenderPlugin.cpp; sourceTree = "<group>"; };
 		BAAF1B55226422F6009356FB /* RenderPlugin.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RenderPlugin.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAAF1B58226422F6009356FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -59,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				BAAF1B58226422F6009356FB /* Info.plist */,
+				BA1BDF4422642D2500B76576 /* RenderPlugin.cpp */,
 			);
 			path = RenderPlugin;
 			sourceTree = "<group>";
@@ -130,6 +133,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA1BDF4522642D2500B76576 /* RenderPlugin.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
