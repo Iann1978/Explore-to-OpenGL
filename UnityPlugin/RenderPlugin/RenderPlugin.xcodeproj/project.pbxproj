@@ -6,6 +6,23 @@
 	objectVersion = 50;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		BA1BDF432264280800B76576 /* RenderPlugin.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = BAAF1B55226422F6009356FB /* RenderPlugin.bundle */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BA1BDF42226427C500B76576 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "/Users/iann/git/Explore-to-OpenGL/UnityPlugin/UnityProject/Assets/Plugin";
+			dstSubfolderSpec = 0;
+			files = (
+				BA1BDF432264280800B76576 /* RenderPlugin.bundle in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		BAAF1B55226422F6009356FB /* RenderPlugin.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RenderPlugin.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAAF1B58226422F6009356FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -56,6 +73,7 @@
 				BAAF1B51226422F6009356FB /* Sources */,
 				BAAF1B52226422F6009356FB /* Frameworks */,
 				BAAF1B53226422F6009356FB /* Resources */,
+				BA1BDF42226427C500B76576 /* CopyFiles */,
 			);
 			buildRules = (
 			);
