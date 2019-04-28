@@ -7,8 +7,8 @@ public class Test : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        int version = RenderPlugin.GetVersion();
-        Debug.Log("Version of RenderPlugin: " + version);
+        //int version = RenderPlugin.GetVersion();
+        //Debug.Log("Version of RenderPlugin: " + version);
 
 
     }
@@ -17,5 +17,26 @@ public class Test : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void OnGUI()
+    {
+        if (GUILayout.Button("GetVersion()"))
+        {
+            int version = RenderPlugin.GetVersion();
+            Debug.Log("Version of RenderPlugin: " + version);
+        }
+
+        if (GUILayout.Button("GetRenderEventFunc"))
+        {
+            RenderPlugin.GetRenderEventFunc();
+        }
+
+        if (GUILayout.Button("IssuePluginEvent"))
+        {
+
+            GL.IssuePluginEvent(RenderPlugin.GetRenderEventFunc(), 1);
+        }
+
     }
 }
