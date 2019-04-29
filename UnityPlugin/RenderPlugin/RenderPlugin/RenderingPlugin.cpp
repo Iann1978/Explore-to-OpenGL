@@ -9,7 +9,7 @@
 
 extern "C" int UNITY_INTERFACE_EXPORT UNITY_INTERFACE_API GetDllVersion()
 {
-    return 3;
+    return 4;
 }
 // --------------------------------------------------------------------------
 // SetTimeFromUnity, an example function we export which is called by one of the scripts.
@@ -19,6 +19,20 @@ static float g_Time;
 extern "C" void UNITY_INTERFACE_EXPORT UNITY_INTERFACE_API SetTimeFromUnity (float t) { g_Time = t; }
 
 
+
+RenderAPI* CreateRenderAPI(UnityGfxRenderer apiType)
+{
+    
+    
+    if (apiType == kUnityGfxRendererOpenGLCore || apiType == kUnityGfxRendererOpenGLES20 || apiType == kUnityGfxRendererOpenGLES30)
+    {
+        extern RenderAPI* CreateRenderAPI_OpenGLCoreES(UnityGfxRenderer apiType);
+        return CreateRenderAPI_OpenGLCoreES(apiType);
+    }
+    
+    // Unknown or unsupported graphics API
+    return NULL;
+}
 
 // --------------------------------------------------------------------------
 // SetTextureFromUnity, an example function we export which is called by one of the scripts.

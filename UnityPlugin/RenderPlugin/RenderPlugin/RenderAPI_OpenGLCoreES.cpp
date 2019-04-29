@@ -1,3 +1,4 @@
+#pragma warning(disable:0)
 #include "RenderAPI.h"
 #include "PlatformBase.h"
 
