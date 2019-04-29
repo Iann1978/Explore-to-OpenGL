@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		BA0B96EB22759B970090D8FF /* Unity in Resources */ = {isa = PBXBuildFile; fileRef = BA0B96EA22759B970090D8FF /* Unity */; };
 		BA0B96EE2275B2330090D8FF /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA0B96ED2275B2330090D8FF /* OpenGL.framework */; };
-		BA14D1222276840A0048BE38 /* RenderingPlugin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA14D1192276840A0048BE38 /* RenderingPlugin.cpp */; };
-		BA14D1252276840A0048BE38 /* RenderAPI_OpenGLCoreES.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA14D11C2276840A0048BE38 /* RenderAPI_OpenGLCoreES.cpp */; };
+		BA14D1222276840A0048BE38 /* RenderingPlugin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA14D1192276840A0048BE38 /* RenderingPlugin.cpp */; settings = {COMPILER_FLAGS = "-Wno-deprecated-declarations"; }; };
+		BA14D1252276840A0048BE38 /* RenderAPI_OpenGLCoreES.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA14D11C2276840A0048BE38 /* RenderAPI_OpenGLCoreES.cpp */; settings = {COMPILER_FLAGS = "-Wno-deprecated-declarations"; }; };
 		BA1BDF432264280800B76576 /* RenderPlugin.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = BAAF1B55226422F6009356FB /* RenderPlugin.bundle */; };
 /* End PBXBuildFile section */
 
