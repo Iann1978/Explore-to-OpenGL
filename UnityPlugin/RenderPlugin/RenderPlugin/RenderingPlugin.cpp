@@ -9,7 +9,7 @@
 
 extern "C" int UNITY_INTERFACE_EXPORT UNITY_INTERFACE_API GetDllVersion()
 {
-    return 0;
+    return 3;
 }
 // --------------------------------------------------------------------------
 // SetTimeFromUnity, an example function we export which is called by one of the scripts.
@@ -204,89 +204,6 @@ static void DrawColoredTriangle()
 }
 
 
-static void ModifyTexturePixels()
-{
-	void* textureHandle = g_TextureHandle;
-	int width = g_TextureWidth;
-	int height = g_TextureHeight;
-	if (!textureHandle)
-		return;
-
-	int textureRowPitch;
-	void* textureDataPtr = s_CurrentAPI->BeginModifyTexture(textureHandle, width, height, &textureRowPitch);
-	if (!textureDataPtr)
-		return;
-
-	const float t = g_Time * 4.0f;
-
-	unsigned char* dst = (unsigned char*)textureDataPtr;
-	for (int y = 0; y < height; ++y)
-	{
-		unsigned char* ptr = dst;
-		for (int x = 0; x < width; ++x)
-		{
-			// Simple "plasma effect": several combined sine waves
-			int vv = int(
-				(127.0f + (127.0f * sinf(x / 7.0f + t))) +
-				(127.0f + (127.0f * sinf(y / 5.0f - t))) +
-				(127.0f + (127.0f * sinf((x + y) / 6.0f - t))) +
-				(127.0f + (127.0f * sinf(sqrtf(float(x*x + y*y)) / 4.0f - t)))
-				) / 4;
-
-			// Write the texture pixel
-			ptr[0] = vv;
-			ptr[1] = vv;
-			ptr[2] = vv;
-			ptr[3] = vv;
-
-			// To next pixel (our pixels are 4 bpp)
-			ptr += 4;
-		}
-
-		// To next image row
-		dst += textureRowPitch;
-	}
-
-	s_CurrentAPI->EndModifyTexture(textureHandle, width, height, textureRowPitch, textureDataPtr);
-}
-
-
-static void ModifyVertexBuffer()
-{
-	void* bufferHandle = g_VertexBufferHandle;
-	int vertexCount = g_VertexBufferVertexCount;
-	if (!bufferHandle)
-		return;
-
-	size_t bufferSize;
-	void* bufferDataPtr = s_CurrentAPI->BeginModifyVertexBuffer(bufferHandle, &bufferSize);
-	if (!bufferDataPtr)
-		return;
-	int vertexStride = int(bufferSize / vertexCount);
-
-	const float t = g_Time * 3.0f;
-
-	char* bufferPtr = (char*)bufferDataPtr;
-	// modify vertex Y position with several scrolling sine waves,
-	// copy the rest of the source data unmodified
-	for (int i = 0; i < vertexCount; ++i)
-	{
-		const MeshVertex& src = g_VertexSource[i];
-		MeshVertex& dst = *(MeshVertex*)bufferPtr;
-		dst.pos[0] = src.pos[0];
-		dst.pos[1] = src.pos[1] + sinf(src.pos[0] * 1.1f + t) * 0.4f + sinf(src.pos[2] * 0.9f - t) * 0.3f;
-		dst.pos[2] = src.pos[2];
-		dst.normal[0] = src.normal[0];
-		dst.normal[1] = src.normal[1];
-		dst.normal[2] = src.normal[2];
-		dst.uv[0] = src.uv[0];
-		dst.uv[1] = src.uv[1];
-		bufferPtr += vertexStride;
-	}
-
-	s_CurrentAPI->EndModifyVertexBuffer(bufferHandle);
-}
-
 
 static void UNITY_INTERFACE_API OnRenderEvent(int eventID)
 {
@@ -295,8 +212,8 @@ static void UNITY_INTERFACE_API OnRenderEvent(int eventID)
 		return;
 
 	DrawColoredTriangle();
-	ModifyTexturePixels();
-	ModifyVertexBuffer();
+	//ModifyTexturePixels();
+	//ModifyVertexBuffer();
 }
 
 

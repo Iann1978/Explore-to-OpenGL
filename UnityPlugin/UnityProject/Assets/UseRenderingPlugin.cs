@@ -6,61 +6,32 @@ using System.Runtime.InteropServices;
 
 public class UseRenderingPlugin : MonoBehaviour
 {
-	// Native plugin rendering events are only called if a plugin is used
-	// by some script. This means we have to DllImport at least
-	// one function in some active script.
-	// For this example, we'll call into plugin's SetTimeFromUnity
-	// function and pass the current time so the plugin can animate.
-
-#if (UNITY_IPHONE || UNITY_WEBGL) && !UNITY_EDITOR
-	[DllImport ("__Internal")]
-#else
+	
 	[DllImport ("RenderPlugin")]
-#endif
 	private static extern void SetTimeFromUnity(float t);
 
     [DllImport("RenderPlugin")]
     private static extern int GetDllVersion();
 
 
-    // We'll also pass native pointer to a texture in Unity.
-    // The plugin will fill texture data from native code.
-#if (UNITY_IPHONE || UNITY_WEBGL) && !UNITY_EDITOR
-	[DllImport ("__Internal")]
-#else
+
     [DllImport ("RenderPlugin")]
-#endif
 	private static extern void SetTextureFromUnity(System.IntPtr texture, int w, int h);
 
-	// We'll pass native pointer to the mesh vertex buffer.
-	// Also passing source unmodified mesh data.
-	// The plugin will fill vertex data from native code.
-#if (UNITY_IPHONE || UNITY_WEBGL) && !UNITY_EDITOR
-	[DllImport ("__Internal")]
-#else
+
 	[DllImport ("RenderPlugin")]
-#endif
 	private static extern void SetMeshBuffersFromUnity (IntPtr vertexBuffer, int vertexCount, IntPtr sourceVertices, IntPtr sourceNormals, IntPtr sourceUVs);
 
-#if (UNITY_IPHONE || UNITY_WEBGL) && !UNITY_EDITOR
-	[DllImport ("__Internal")]
-#else
+
 	[DllImport("RenderPlugin")]
-#endif
 	private static extern IntPtr GetRenderEventFunc();
 
-#if UNITY_WEBGL && !UNITY_EDITOR
-	[DllImport ("__Internal")]
-	private static extern void RegisterPlugin();
-#endif
+
 
 	IEnumerator Start()
 	{
         int version = GetDllVersion();
         Debug.Log("dll version:" + version);
-#if UNITY_WEBGL && !UNITY_EDITOR
-		RegisterPlugin();
-#endif
         CreateTextureAndPassToPlugin();
 		SendMeshBuffersToPlugin();
 		yield return StartCoroutine("CallPluginAtEndOfFrames");
