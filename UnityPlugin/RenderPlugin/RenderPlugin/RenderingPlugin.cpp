@@ -1,6 +1,6 @@
 // Example low level rendering Unity plugin
 
-#include "PlatformBase.h"
+//#include "PlatformBase.h"
 #include "RenderAPI.h"
 
 #include <assert.h>
@@ -9,7 +9,7 @@
 
 extern "C" int UNITY_INTERFACE_EXPORT UNITY_INTERFACE_API GetDllVersion()
 {
-    return 12;
+    return 14;
 }
 // --------------------------------------------------------------------------
 // SetTimeFromUnity, an example function we export which is called by one of the scripts.
@@ -175,15 +175,6 @@ static void UNITY_INTERFACE_API OnGraphicsDeviceEvent(UnityGfxDeviceEventType ev
 	}
 }
 
-
-
-// --------------------------------------------------------------------------
-// OnRenderEvent
-// This will be called for GL.IssuePluginEvent script calls; eventID will
-// be the integer passed to IssuePluginEvent. In this example, we just ignore
-// that value.
-
-
 static void DrawColoredTriangle()
 {
 	// Draw a colored triangle. Note that colors will come out differently
@@ -221,18 +212,12 @@ static void DrawColoredTriangle()
 
 static void UNITY_INTERFACE_API OnRenderEvent(int eventID)
 {
-	// Unknown / unsupported graphics device type? Do nothing
 	if (s_CurrentAPI == NULL)
 		return;
 
 	DrawColoredTriangle();
-	//ModifyTexturePixels();
-	//ModifyVertexBuffer();
 }
 
-
-// --------------------------------------------------------------------------
-// GetRenderEventFunc, an example function we export which is used to get a rendering event callback function.
 
 extern "C" UnityRenderingEvent UNITY_INTERFACE_EXPORT UNITY_INTERFACE_API GetRenderEventFunc()
 {

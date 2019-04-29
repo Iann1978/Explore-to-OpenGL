@@ -10,7 +10,7 @@
 		BA0B96EB22759B970090D8FF /* Unity in Resources */ = {isa = PBXBuildFile; fileRef = BA0B96EA22759B970090D8FF /* Unity */; };
 		BA0B96EE2275B2330090D8FF /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA0B96ED2275B2330090D8FF /* OpenGL.framework */; };
 		BA14D1222276840A0048BE38 /* RenderingPlugin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA14D1192276840A0048BE38 /* RenderingPlugin.cpp */; settings = {COMPILER_FLAGS = "-Wno-deprecated-declarations"; }; };
-		BA14D1252276840A0048BE38 /* RenderAPI_OpenGLCoreES.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA14D11C2276840A0048BE38 /* RenderAPI_OpenGLCoreES.cpp */; settings = {COMPILER_FLAGS = "-Wno-deprecated-declarations"; }; };
+		BA14D1252276840A0048BE38 /* RenderAPI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA14D11C2276840A0048BE38 /* RenderAPI.cpp */; settings = {COMPILER_FLAGS = "-Wno-deprecated-declarations"; }; };
 		BA1BDF432264280800B76576 /* RenderPlugin.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = BAAF1B55226422F6009356FB /* RenderPlugin.bundle */; };
 /* End PBXBuildFile section */
 
@@ -31,8 +31,7 @@
 		BA0B96EA22759B970090D8FF /* Unity */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Unity; sourceTree = "<group>"; };
 		BA0B96ED2275B2330090D8FF /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		BA14D1192276840A0048BE38 /* RenderingPlugin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderingPlugin.cpp; sourceTree = "<group>"; };
-		BA14D11C2276840A0048BE38 /* RenderAPI_OpenGLCoreES.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderAPI_OpenGLCoreES.cpp; sourceTree = "<group>"; };
-		BA14D11D2276840A0048BE38 /* PlatformBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlatformBase.h; sourceTree = "<group>"; };
+		BA14D11C2276840A0048BE38 /* RenderAPI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderAPI.cpp; sourceTree = "<group>"; };
 		BA14D11E2276840A0048BE38 /* RenderAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderAPI.h; sourceTree = "<group>"; };
 		BAAF1B55226422F6009356FB /* RenderPlugin.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RenderPlugin.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAAF1B58226422F6009356FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -78,8 +77,7 @@
 		BAAF1B57226422F6009356FB /* RenderPlugin */ = {
 			isa = PBXGroup;
 			children = (
-				BA14D11D2276840A0048BE38 /* PlatformBase.h */,
-				BA14D11C2276840A0048BE38 /* RenderAPI_OpenGLCoreES.cpp */,
+				BA14D11C2276840A0048BE38 /* RenderAPI.cpp */,
 				BA14D11E2276840A0048BE38 /* RenderAPI.h */,
 				BA14D1192276840A0048BE38 /* RenderingPlugin.cpp */,
 				BA0B96EA22759B970090D8FF /* Unity */,
@@ -156,7 +154,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA14D1252276840A0048BE38 /* RenderAPI_OpenGLCoreES.cpp in Sources */,
+				BA14D1252276840A0048BE38 /* RenderAPI.cpp in Sources */,
 				BA14D1222276840A0048BE38 /* RenderingPlugin.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

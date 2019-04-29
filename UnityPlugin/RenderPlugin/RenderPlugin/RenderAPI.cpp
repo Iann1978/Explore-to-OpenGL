@@ -1,43 +1,15 @@
 
 #include "RenderAPI.h"
-#include "PlatformBase.h"
+//#include "PlatformBase.h"
 
 // OpenGL Core profile (desktop) or OpenGL ES (mobile) implementation of RenderAPI.
 // Supports several flavors: Core, ES2, ES3
 #include <assert.h>
 #include <OpenGL/gl3.h>
 
-
-class RenderAPI_OpenGLCoreES : public RenderAPI
-{
-public:
-	RenderAPI_OpenGLCoreES(UnityGfxRenderer apiType);
-	virtual ~RenderAPI_OpenGLCoreES() { }
-
-	virtual void ProcessDeviceEvent(UnityGfxDeviceEventType type, IUnityInterfaces* interfaces);
-
-	virtual bool GetUsesReverseZ() { return false; }
-
-	virtual void DrawSimpleTriangles(const float worldMatrix[16], int triangleCount, const void* verticesFloat3Byte4);
-
-private:
-	void CreateResources();
-
-private:
-	UnityGfxRenderer m_APIType;
-	GLuint m_VertexShader;
-	GLuint m_FragmentShader;
-	GLuint m_Program;
-	GLuint m_VertexArray;
-	GLuint m_VertexBuffer;
-	int m_UniformWorldMatrix;
-	int m_UniformProjMatrix;
-};
-
-
 RenderAPI* CreateRenderAPI_OpenGLCoreES(UnityGfxRenderer apiType)
 {
-	return new RenderAPI_OpenGLCoreES(apiType);
+	return new RenderAPI(apiType);
 }
 
 
@@ -92,7 +64,7 @@ static GLuint CreateShader(GLenum type, const char* sourceText)
 }
 
 
-void RenderAPI_OpenGLCoreES::CreateResources()
+void RenderAPI::CreateResources()
 {
 
     //m_VertexShader = CreateShader(GL_VERTEX_SHADER, kGlesVProgTextGLCore);
@@ -129,13 +101,13 @@ void RenderAPI_OpenGLCoreES::CreateResources()
 }
 
 
-RenderAPI_OpenGLCoreES::RenderAPI_OpenGLCoreES(UnityGfxRenderer apiType)
+RenderAPI::RenderAPI(UnityGfxRenderer apiType)
 	: m_APIType(apiType)
 {
 }
 
 
-void RenderAPI_OpenGLCoreES::ProcessDeviceEvent(UnityGfxDeviceEventType type, IUnityInterfaces* interfaces)
+void RenderAPI::ProcessDeviceEvent(UnityGfxDeviceEventType type, IUnityInterfaces* interfaces)
 {
 	if (type == kUnityGfxDeviceEventInitialize)
 	{
@@ -148,7 +120,7 @@ void RenderAPI_OpenGLCoreES::ProcessDeviceEvent(UnityGfxDeviceEventType type, IU
 }
 
 
-void RenderAPI_OpenGLCoreES::DrawSimpleTriangles(const float worldMatrix[16], int triangleCount, const void* verticesFloat3Byte4)
+void RenderAPI::DrawSimpleTriangles(const float worldMatrix[16], int triangleCount, const void* verticesFloat3Byte4)
 {
 	// Set basic render state
 	glDisable(GL_CULL_FACE);
