@@ -48,50 +48,39 @@ enum VertexInputs
 };
 
 
-// Simple vertex shader source
-#define VERTEX_SHADER_SRC(ver, attr, varying)						\
-	ver																\
-	attr " highp vec3 pos;\n"										\
-	attr " lowp vec4 color;\n"										\
-	"\n"															\
-	varying " lowp vec4 ocolor;\n"									\
-	"\n"															\
-	"uniform highp mat4 worldMatrix;\n"								\
-	"uniform highp mat4 projMatrix;\n"								\
-	"\n"															\
-	"void main()\n"													\
-	"{\n"															\
-	"	gl_Position = (projMatrix * worldMatrix) * vec4(pos,1);\n"	\
-	"	ocolor = color;\n"											\
-	"}\n"															\
-
-static const char* kGlesVProgTextGLES2 = VERTEX_SHADER_SRC("\n", "attribute", "varying");
-static const char* kGlesVProgTextGLES3 = VERTEX_SHADER_SRC("#version 300 es\n", "in", "out");
-#if SUPPORT_OPENGL_CORE
-static const char* kGlesVProgTextGLCore = VERTEX_SHADER_SRC("#version 150\n", "in", "out");
-#endif
-
-#undef VERTEX_SHADER_SRC
 
 
-// Simple fragment shader source
-#define FRAGMENT_SHADER_SRC(ver, varying, outDecl, outVar)	\
-	ver												\
-	outDecl											\
-	varying " lowp vec4 ocolor;\n"					\
-	"\n"											\
-	"void main()\n"									\
-	"{\n"											\
-	"	" outVar " = ocolor;\n"						\
-	"}\n"											\
+static const char *vertexSource =
+R"SHADER(
+#version 150
+in highp vec3 pos;
+in lowp vec4 color;
 
-static const char* kGlesFShaderTextGLES2 = FRAGMENT_SHADER_SRC("\n", "varying", "\n", "gl_FragColor");
-static const char* kGlesFShaderTextGLES3 = FRAGMENT_SHADER_SRC("#version 300 es\n", "in", "out lowp vec4 fragColor;\n", "fragColor");
-#if SUPPORT_OPENGL_CORE
-static const char* kGlesFShaderTextGLCore = FRAGMENT_SHADER_SRC("#version 150\n", "in", "out lowp vec4 fragColor;\n", "fragColor");
-#endif
+out lowp vec4 ocolor;
 
-#undef FRAGMENT_SHADER_SRC
+uniform highp mat4 worldMatrix;
+uniform highp mat4 projMatrix;
+
+void main()
+{
+    gl_Position = (projMatrix * worldMatrix) * vec4(pos,1);
+    ocolor = color;
+}
+)SHADER";
+
+
+
+static const char *fragmentSource =
+R"SHADER(
+#version 150
+out lowp vec4 fragColor;
+in lowp vec4 ocolor;
+
+void main()
+{
+    fragColor = ocolor;
+}
+)SHADER";
 
 
 static GLuint CreateShader(GLenum type, const char* sourceText)
@@ -106,8 +95,11 @@ static GLuint CreateShader(GLenum type, const char* sourceText)
 void RenderAPI_OpenGLCoreES::CreateResources()
 {
 
-    m_VertexShader = CreateShader(GL_VERTEX_SHADER, kGlesVProgTextGLCore);
-    m_FragmentShader = CreateShader(GL_FRAGMENT_SHADER, kGlesFShaderTextGLCore);
+    //m_VertexShader = CreateShader(GL_VERTEX_SHADER, kGlesVProgTextGLCore);
+    //m_FragmentShader = CreateShader(GL_FRAGMENT_SHADER, kGlesFShaderTextGLCore);
+    m_VertexShader = CreateShader(GL_VERTEX_SHADER, vertexSource);
+    m_FragmentShader = CreateShader(GL_FRAGMENT_SHADER, fragmentSource);
+    
 
 	// Link shaders into a program and find uniform locations
 	m_Program = glCreateProgram();
