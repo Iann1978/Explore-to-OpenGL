@@ -13,6 +13,14 @@ public class UseRenderingPlugin : MonoBehaviour
     [DllImport("RenderPlugin")]
     private static extern int GetDllVersion();
 
+    [DllImport("RenderPlugin")]
+    private static extern int CreateCustomWindow();
+
+
+    [DllImport("RenderPlugin")]
+    private static extern int DestroyCustomWindow();
+
+
 
 
     [DllImport ("RenderPlugin")]
@@ -98,4 +106,21 @@ public class UseRenderingPlugin : MonoBehaviour
 			GL.IssuePluginEvent(GetRenderEventFunc(), 1);
 		}
 	}
+
+    private void OnGUI()
+    {
+        if (GUILayout.Button("CreateCustomWindow"))
+        {
+            int a = CreateCustomWindow();
+            //Debug.Log("a=" + a);
+        }
+
+        if (GUILayout.Button("DestroyCustomWindow"))
+        {
+            int a = DestroyCustomWindow();
+            //Debug.Log("a=" + a);
+        }
+
+
+    }
 }

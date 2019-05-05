@@ -1,16 +1,50 @@
 // Example low level rendering Unity plugin
 
 //#include "PlatformBase.h"
+#import <Cocoa/Cocoa.h>
 #include "RenderAPI.h"
 
 #include <assert.h>
 #include <math.h>
 #include <vector>
 
+
+
 extern "C" int UNITY_INTERFACE_EXPORT UNITY_INTERFACE_API GetDllVersion()
 {
-    return 16;
+    return 25;
 }
+NSWindow *win = nullptr;
+extern "C" int UNITY_INTERFACE_EXPORT UNITY_INTERFACE_API CreateCustomWindow()
+{
+    NSApplication *app = [NSApplication sharedApplication];
+    NSWindow *mainwnd = [app mainWindow];
+    NSRect rc = NSMakeRect(0, 0, 800, 600);
+    NSInteger uiStyle = NSWindowStyleMaskTitled | NSWindowStyleMaskResizable | NSWindowStyleMaskClosable;
+    NSBackingStoreType backingStoreStyle = NSBackingStoreBuffered;
+    win = [[NSWindow alloc] initWithContentRect:rc styleMask:uiStyle backing:backingStoreStyle defer:NO];
+    //[win setTitle:@"Hello Mac"];
+    //[win makeKeyAndOrderFront:win];
+    
+    [mainwnd addChildWindow:win ordered:(NSWindowOrderingMode)NSWindowAbove];
+    
+    //[mainwnd removeChildWindow:win];
+    //[win close];
+    //[app run];
+    //[win makeMainWindow];
+    return 1;
+}
+
+extern "C" int UNITY_INTERFACE_EXPORT UNITY_INTERFACE_API DestroyCustomWindow()
+{
+    NSApplication *app = [NSApplication sharedApplication];
+    NSWindow *mainwnd = [app mainWindow];
+    [mainwnd removeChildWindow:win];
+    //[win close];
+    win = nullptr;
+    return 0;
+}
+
 // --------------------------------------------------------------------------
 // SetTimeFromUnity, an example function we export which is called by one of the scripts.
 

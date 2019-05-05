@@ -29,6 +29,7 @@
     NSOpenGLContext *glContext = [[NSOpenGLContext alloc] initWithFormat:format shareContext:nil];
     [glContext setView:self];
     
+    [glContext ]
     return self;
 }
 
