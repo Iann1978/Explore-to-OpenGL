@@ -40,6 +40,3 @@ private:
 };
 
 
-// Create a graphics API implementation instance for the given API type.
-RenderAPI* CreateRenderAPI(UnityGfxRenderer apiType);
-

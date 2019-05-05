@@ -7,10 +7,6 @@
 #include <assert.h>
 #include <OpenGL/gl3.h>
 
-RenderAPI* CreateRenderAPI_OpenGLCoreES(UnityGfxRenderer apiType)
-{
-	return new RenderAPI(apiType);
-}
 
 
 enum VertexInputs

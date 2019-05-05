@@ -9,7 +9,7 @@
 
 extern "C" int UNITY_INTERFACE_EXPORT UNITY_INTERFACE_API GetDllVersion()
 {
-    return 14;
+    return 16;
 }
 // --------------------------------------------------------------------------
 // SetTimeFromUnity, an example function we export which is called by one of the scripts.
@@ -19,20 +19,6 @@ static float g_Time;
 extern "C" void UNITY_INTERFACE_EXPORT UNITY_INTERFACE_API SetTimeFromUnity (float t) { g_Time = t; }
 
 
-
-RenderAPI* CreateRenderAPI(UnityGfxRenderer apiType)
-{
-    
-    
-    if (apiType == kUnityGfxRendererOpenGLCore || apiType == kUnityGfxRendererOpenGLES20 || apiType == kUnityGfxRendererOpenGLES30)
-    {
-        extern RenderAPI* CreateRenderAPI_OpenGLCoreES(UnityGfxRenderer apiType);
-        return CreateRenderAPI_OpenGLCoreES(apiType);
-    }
-    
-    // Unknown or unsupported graphics API
-    return NULL;
-}
 
 // --------------------------------------------------------------------------
 // SetTextureFromUnity, an example function we export which is called by one of the scripts.
@@ -157,7 +143,7 @@ static void UNITY_INTERFACE_API OnGraphicsDeviceEvent(UnityGfxDeviceEventType ev
 	{
 		assert(s_CurrentAPI == NULL);
 		s_DeviceType = s_Graphics->GetRenderer();
-		s_CurrentAPI = CreateRenderAPI(s_DeviceType);
+		s_CurrentAPI = new RenderAPI(s_DeviceType);
 	}
 
 	// Let the implementation process the device related events
