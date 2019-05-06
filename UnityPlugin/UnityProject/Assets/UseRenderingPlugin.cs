@@ -35,8 +35,14 @@ public class UseRenderingPlugin : MonoBehaviour
 	private static extern IntPtr GetRenderEventFunc();
 
 
+    public delegate void FunctionLogout(string str);
+    [DllImport("RenderPlugin")]
+    private static extern int SetLogoutFunction(FunctionLogout logfun);
+    [DllImport("RenderPlugin")]
+    private static extern int TestLog();
+    FunctionLogout Logout;
 
-	IEnumerator Start()
+    IEnumerator Start()
 	{
         int version = GetDllVersion();
         Debug.Log("dll version:" + version);
@@ -107,6 +113,8 @@ public class UseRenderingPlugin : MonoBehaviour
 		}
 	}
 
+
+
     private void OnGUI()
     {
         if (GUILayout.Button("CreateCustomWindow"))
@@ -118,6 +126,22 @@ public class UseRenderingPlugin : MonoBehaviour
         if (GUILayout.Button("DestroyCustomWindow"))
         {
             int a = DestroyCustomWindow();
+            //Debug.Log("a=" + a);
+        }
+    
+
+        if (GUILayout.Button("SetLogoutFunction"))
+        {
+            Logout = (string str) => { Debug.Log(str); };
+            SetLogoutFunction(Logout);
+            TestLog();
+            //Debug.Log("a=" + a);
+        }
+
+        if (GUILayout.Button("TestLog"))
+        {
+       
+            TestLog();
             //Debug.Log("a=" + a);
         }
 

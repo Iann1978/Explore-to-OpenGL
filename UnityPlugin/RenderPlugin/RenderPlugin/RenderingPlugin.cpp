@@ -14,6 +14,19 @@ extern "C" int UNITY_INTERFACE_EXPORT UNITY_INTERFACE_API GetDllVersion()
 {
     return 25;
 }
+
+typedef void (*LogoutFunction)(const char *str);
+LogoutFunction Logout = nullptr;
+extern "C" int UNITY_INTERFACE_EXPORT UNITY_INTERFACE_API SetLogoutFunction(LogoutFunction logfun)
+{
+    Logout = logfun;
+    return 0;
+}
+extern "C" int UNITY_INTERFACE_EXPORT UNITY_INTERFACE_API TestLog()
+{
+    Logout("abc");
+    return 0;
+}
 NSWindow *win = nullptr;
 extern "C" int UNITY_INTERFACE_EXPORT UNITY_INTERFACE_API CreateCustomWindow()
 {
