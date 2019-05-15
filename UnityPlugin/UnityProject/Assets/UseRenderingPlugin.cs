@@ -36,12 +36,14 @@ public class UseRenderingPlugin : MonoBehaviour
 	private static extern IntPtr GetRenderEventFunc();
 
 
-    public delegate void FunctionLogout(string str);
+    // Log
+    public delegate void FunUnityDebugLog(string str);
+    FunUnityDebugLog UnityDebugLog;
+
     [DllImport("RenderPlugin")]
-    private static extern int SetLogoutFunction(FunctionLogout logfun);
+    private static extern int SetUnityDebugLog(FunUnityDebugLog logfun);
     [DllImport("RenderPlugin")]
     private static extern int TestLog();
-    FunctionLogout Logout;
 
 
     //Profiler
@@ -49,6 +51,10 @@ public class UseRenderingPlugin : MonoBehaviour
     public delegate void FunUnityProfilerEndSample();
     public delegate void FunUnityProfilerBeginThreadProfiling(string groupName, string threadName);
     public delegate void FunUnityProfilerEndThreadProfiling();
+    FunUnityProfilerBeginSample UnityProfilerBeginSample;
+    FunUnityProfilerEndSample UnityProfilerEndSample;
+    FunUnityProfilerBeginThreadProfiling UnityProfilerBeginThreadProfiling;
+    FunUnityProfilerEndThreadProfiling UnityProfilerEndThreadProfiling;
 
     [DllImport("RenderPlugin")]
     private static extern int SetUnityProfilerFunctions(FunUnityProfilerBeginSample logfun_begin_samplefun,
@@ -60,10 +66,6 @@ public class UseRenderingPlugin : MonoBehaviour
     [DllImport("RenderPlugin")]
     private static extern int EndTestUnityProfiler();
 
-    FunUnityProfilerBeginSample UnityProfilerBeginSample;
-    FunUnityProfilerEndSample UnityProfilerEndSample;
-    FunUnityProfilerBeginThreadProfiling UnityProfilerBeginThreadProfiling;
-    FunUnityProfilerEndThreadProfiling UnityProfilerEndThreadProfiling;
 
 
     IEnumerator Start()
@@ -156,8 +158,8 @@ public class UseRenderingPlugin : MonoBehaviour
 
         if (GUILayout.Button("SetLogoutFunction"))
         {
-            Logout = (string str) => { Debug.Log(str); };
-            SetLogoutFunction(Logout);
+            UnityDebugLog = (string str) => { Debug.Log(str); };
+            SetUnityDebugLog(UnityDebugLog);
             TestLog();
             //Debug.Log("a=" + a);
         }
