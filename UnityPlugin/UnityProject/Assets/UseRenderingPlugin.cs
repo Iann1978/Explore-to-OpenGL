@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using System.Collections;
 using System.Runtime.InteropServices;
+using UnityEngine.Profiling;
 
 
 public class UseRenderingPlugin : MonoBehaviour
@@ -41,6 +42,29 @@ public class UseRenderingPlugin : MonoBehaviour
     [DllImport("RenderPlugin")]
     private static extern int TestLog();
     FunctionLogout Logout;
+
+
+    //Profiler
+    public delegate void FunUnityProfilerBeginSample(string name);
+    public delegate void FunUnityProfilerEndSample();
+    public delegate void FunUnityProfilerBeginThreadProfiling(string groupName, string threadName);
+    public delegate void FunUnityProfilerEndThreadProfiling();
+
+    [DllImport("RenderPlugin")]
+    private static extern int SetUnityProfilerFunctions(FunUnityProfilerBeginSample logfun_begin_samplefun,
+        FunUnityProfilerEndSample fun_end_sample,
+        FunUnityProfilerBeginThreadProfiling fun_begin_thread_profiler,
+        FunUnityProfilerEndThreadProfiling fun_end_thread_profiler);
+    [DllImport("RenderPlugin")]
+    private static extern int StartTestUnityProfiler();
+    [DllImport("RenderPlugin")]
+    private static extern int EndTestUnityProfiler();
+
+    FunUnityProfilerBeginSample UnityProfilerBeginSample;
+    FunUnityProfilerEndSample UnityProfilerEndSample;
+    FunUnityProfilerBeginThreadProfiling UnityProfilerBeginThreadProfiling;
+    FunUnityProfilerEndThreadProfiling UnityProfilerEndThreadProfiling;
+
 
     IEnumerator Start()
 	{
@@ -146,5 +170,30 @@ public class UseRenderingPlugin : MonoBehaviour
         }
 
 
+        // Profiler
+        if (GUILayout.Button("SetUnityProfilerFunctions"))
+        {
+            UnityProfilerBeginSample = (string str) => { Profiler.BeginSample(str); };
+            UnityProfilerEndSample = () => { Profiler.EndSample(); };
+            UnityProfilerBeginThreadProfiling = (string groupName, string threadName) => { Profiler.BeginThreadProfiling(groupName, threadName); };
+            UnityProfilerEndThreadProfiling = () => { Profiler.EndThreadProfiling(); };
+            SetUnityProfilerFunctions(UnityProfilerBeginSample, UnityProfilerEndSample, UnityProfilerBeginThreadProfiling, UnityProfilerEndThreadProfiling);
+        }
+
+        if (GUILayout.Button("StartTestUnityProfiler"))
+        {
+            StartTestUnityProfiler();
+        }
+
+        if (GUILayout.Button("EndTestUnityProfiler"))
+        {
+            EndTestUnityProfiler();
+        }
+
     }
+
+    void HandleFunUnityProfilerBeginSample(string name)
+    {
+    }
+
 }

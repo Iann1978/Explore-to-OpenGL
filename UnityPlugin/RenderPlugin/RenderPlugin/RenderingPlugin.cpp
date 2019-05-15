@@ -7,14 +7,17 @@
 #include <assert.h>
 #include <math.h>
 #include <vector>
+#include <thread>
+#include <mutex>
 
 
 
 extern "C" int UNITY_INTERFACE_EXPORT UNITY_INTERFACE_API GetDllVersion()
 {
-    return 25;
+    return 33;
 }
 
+// Log
 typedef void (*LogoutFunction)(const char *str);
 LogoutFunction Logout = nullptr;
 extern "C" int UNITY_INTERFACE_EXPORT UNITY_INTERFACE_API SetLogoutFunction(LogoutFunction logfun)
@@ -27,6 +30,67 @@ extern "C" int UNITY_INTERFACE_EXPORT UNITY_INTERFACE_API TestLog()
     Logout("abc");
     return 0;
 }
+
+// Profiler
+typedef void (*FunUnityProfilerBeginSample)(const char *name);
+typedef void (*FunUnityProfilerEndSample)();
+typedef void (*FunUnityProfilerBeginThreadProfiling)(const char *groupName, const char *threadName);
+typedef void (*FunUnityProfilerEndThreadProfiling)();
+FunUnityProfilerBeginSample UnityProfilerBeginSample = nullptr;
+FunUnityProfilerEndSample UnityProfilerEndSample = nullptr;
+FunUnityProfilerBeginThreadProfiling UnityProfilerBeginThreadProfiling = nullptr;
+FunUnityProfilerEndThreadProfiling UnityProfilerEndThreadProfiling = nullptr;
+extern "C" int UNITY_INTERFACE_EXPORT UNITY_INTERFACE_API SetUnityProfilerFunctions(FunUnityProfilerBeginSample fun_begin_sample,
+                                                                                    FunUnityProfilerEndSample fun_end_sample,
+                                                                                    FunUnityProfilerBeginThreadProfiling fun_begin_thread_profiler,
+                                                                                    FunUnityProfilerEndSample fun_end_thread_profiler)
+{
+    Logout("SetUnityProfilerFunctions");
+    Logout(__FUNCTION__);
+    UnityProfilerBeginSample = fun_begin_sample;
+    UnityProfilerEndSample = fun_end_sample;
+    UnityProfilerBeginThreadProfiling = fun_begin_thread_profiler;
+    UnityProfilerEndThreadProfiling = fun_end_thread_profiler;
+    return 0;
+}
+
+bool needExit = false;
+void test_profiler_func()
+{
+    Logout("Start Thread");
+    UnityProfilerBeginThreadProfiling("TestGroup","TestProfilerThread");
+    while (!needExit)
+    {
+        UnityProfilerBeginSample(__FUNCTION__);
+        Logout("run in test_profiler_func");
+        std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+        UnityProfilerEndSample();
+    }
+    UnityProfilerEndThreadProfiling();
+    Logout("End Thread");
+}
+
+std::thread *test_thread;
+extern "C" int UNITY_INTERFACE_EXPORT UNITY_INTERFACE_API StartTestUnityProfiler()
+{
+    Logout(__FUNCTION__);
+    needExit = false;
+    test_thread = new std::thread(test_profiler_func);
+    return 0;
+}
+extern "C" int UNITY_INTERFACE_EXPORT UNITY_INTERFACE_API EndTestUnityProfiler()
+{
+    Logout(__FUNCTION__);
+    needExit = true;
+    test_thread->join();
+    delete test_thread;
+    test_thread = nullptr;
+    
+    return 0;
+}
+
+
+
 NSWindow *win = nullptr;
 extern "C" int UNITY_INTERFACE_EXPORT UNITY_INTERFACE_API CreateCustomWindow()
 {
