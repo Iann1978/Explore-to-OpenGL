@@ -16,8 +16,12 @@ class Image
 	GLuint rectID;
 	GLuint screenWidthID;
 	GLuint screenHeightID;
+	GLuint statusID;
 
 	GLfloat x, y, w, h;
+
+public:
+	GLfloat status;
 	
 
 public:

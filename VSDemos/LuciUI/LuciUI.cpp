@@ -18,7 +18,10 @@ using namespace glm;
 #include <common/texture.hpp>
 
 #include <Image.h>
+#include <Input.h>
 #include <Screen.h>
+
+
 
 int main(void)
 {
@@ -78,23 +81,25 @@ int main(void)
 	int height = 200;
 	Image image("images/1.dds", x, y, width, height);
 	x += xint + width;
-	Image image2("images/2.dds", x, y, width, height);
+	Image image2("images/3.dds", x, y, width, height);
 	x += xint + width;
 	Image image3("images/1.dds", x, y, width, height);
 	y += yint + height;
 	x = xint;
 
-	Image image4("images/2.dds", x, y, width, height);
+	Image image4("images/3.dds", x, y, width, height);
 	x += xint + width;
 	Image image5("images/1.dds", x, y, width, height);
 	x += xint + width;
-	Image image6("images/2.dds", x, y, width, height);
+	Image image6("images/3.dds", x, y, width, height);
 	x += xint + width;
 
 	
 	do {
 		// Clear the screen
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+		glfwGetCursorPos(window, &Input::mousePosX, &Input::mousePosY);
 
 		image.Draw();
 		image2.Draw();

@@ -36,6 +36,7 @@
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="LuciUI.cpp" />
     <ClCompile Include="Screen.cpp" />
+    <ClCompile Include="Input.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common\controls.hpp">
@@ -64,6 +65,7 @@
     </ClInclude>
     <ClInclude Include="Image.h" />
     <ClInclude Include="Screen.h" />
+    <ClInclude Include="Input.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="TextureFragmentShader.fragmentshader">

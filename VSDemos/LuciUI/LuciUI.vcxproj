@@ -163,6 +163,7 @@
     <ClCompile Include="common\texture.cpp" />
     <ClCompile Include="common\vboindexer.cpp" />
     <ClCompile Include="Image.cpp" />
+    <ClCompile Include="Input.cpp" />
     <ClCompile Include="LuciUI.cpp" />
     <ClCompile Include="Screen.cpp" />
   </ItemGroup>
@@ -176,6 +177,7 @@
     <ClInclude Include="common\texture.hpp" />
     <ClInclude Include="common\vboindexer.hpp" />
     <ClInclude Include="Image.h" />
+    <ClInclude Include="Input.h" />
     <ClInclude Include="Screen.h" />
   </ItemGroup>
   <ItemGroup>

@@ -1,11 +1,16 @@
 #include "Image.h"
+#include "Input.h"
 #include "Screen.h"
+
 
 #include <common/shader.hpp>
 #include <common/texture.hpp>
+#include <stdlib.h>
 
 Image::Image(const char* path, float x, float y, float w, float h)
 {
+	
+	this->status = 0.7 * (rand() %5)/5;
 	this->x = x;
 	this->y = y;
 	this->w = w;
@@ -39,6 +44,7 @@ Image::Image(const char* path, float x, float y, float w, float h)
 	rectID = glGetUniformLocation(programID_image, "rect");
 	screenWidthID = glGetUniformLocation(programID_image, "screenWidth");
 	screenHeightID = glGetUniformLocation(programID_image, "screenHeight");
+	statusID = glGetUniformLocation(programID_image, "status");
 	
 	glGenBuffers(1, &vertexbuffer_image);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer_image);
@@ -57,6 +63,15 @@ Image::~Image()
 
 void Image::Draw()
 {
+	if (Input::mousePosX >= x && Input::mousePosX <= (x + w) &&
+		Input::mousePosY >= y && Input::mousePosY <= (y + h))
+	{
+		status = 0.3f;
+	}
+	else
+	{
+		status = 0.0f;
+	}
 
 	glUseProgram(programID_image);
 
@@ -69,6 +84,8 @@ void Image::Draw()
 
 	glUniform1f(screenWidthID, Screen::width);
 	glUniform1f(screenHeightID, Screen::height);
+	glUniform1f(statusID, status);
+	
 
 	//glUniform4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
 
