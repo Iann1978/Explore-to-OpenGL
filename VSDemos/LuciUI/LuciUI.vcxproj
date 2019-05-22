@@ -72,7 +72,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>E:\githome\Explore-to-OpenGL\ext\glfw-3.3\include;E:\githome\Explore-to-OpenGL\ext\glew-2.1.0\include;$(IncludePath)</IncludePath>
+    <IncludePath>E:\githome\Explore-to-OpenGL\ext\glfw-3.3\include;E:\githome\Explore-to-OpenGL\ext\glew-2.1.0\include;E:\githome\Explore-to-OpenGL\ext\glm-0.9.7.1;.;$(IncludePath)</IncludePath>
     <LibraryPath>E:\githome\Explore-to-OpenGL\ext\glew-2.1.0\lib\Release\x64;E:\githome\Explore-to-OpenGL\ext\glfw-3.3\build\src\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -154,7 +154,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="common\controls.cpp" />
+    <ClCompile Include="common\objloader.cpp" />
+    <ClCompile Include="common\quaternion_utils.cpp" />
+    <ClCompile Include="common\shader.cpp" />
+    <ClCompile Include="common\tangentspace.cpp" />
+    <ClCompile Include="common\text2D.cpp" />
+    <ClCompile Include="common\texture.cpp" />
+    <ClCompile Include="common\vboindexer.cpp" />
     <ClCompile Include="LuciUI.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="common\controls.hpp" />
+    <ClInclude Include="common\objloader.hpp" />
+    <ClInclude Include="common\quaternion_utils.hpp" />
+    <ClInclude Include="common\shader.hpp" />
+    <ClInclude Include="common\tangentspace.hpp" />
+    <ClInclude Include="common\text2D.hpp" />
+    <ClInclude Include="common\texture.hpp" />
+    <ClInclude Include="common\vboindexer.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
