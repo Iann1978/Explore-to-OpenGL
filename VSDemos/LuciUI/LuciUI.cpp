@@ -18,6 +18,7 @@ using namespace glm;
 #include <common/texture.hpp>
 
 #include <Image.h>
+#include <Screen.h>
 
 int main(void)
 {
@@ -34,6 +35,8 @@ int main(void)
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // To make MacOS happy; should not be needed
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
+	Screen::width = 1024;
+	Screen::height = 768;
 	// Open a window and create its OpenGL context
 	window = glfwCreateWindow(1024, 768, "Tutorial 05 - Textured Cube", NULL, NULL);
 	if (window == NULL) {
@@ -67,16 +70,39 @@ int main(void)
 
 	
 	
-	Image image("images/1.dds", 0, 0, 1, 1);
+	int xint = 20;
+	int yint = 20;
+	int x = xint;
+	int y = yint; 
+	int width = 200; 
+	int height = 200;
+	Image image("images/1.dds", x, y, width, height);
+	x += xint + width;
+	Image image2("images/2.dds", x, y, width, height);
+	x += xint + width;
+	Image image3("images/1.dds", x, y, width, height);
+	y += yint + height;
+	x = xint;
 
-	Image image1("images/2.dds", -1, -1, 1, 1);
+	Image image4("images/2.dds", x, y, width, height);
+	x += xint + width;
+	Image image5("images/1.dds", x, y, width, height);
+	x += xint + width;
+	Image image6("images/2.dds", x, y, width, height);
+	x += xint + width;
+
 	
 	do {
 		// Clear the screen
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		image.Draw();
-		image1.Draw();
+		image2.Draw();
+		image3.Draw();
+		image4.Draw();
+		image5.Draw();
+		image6.Draw();
+
 		// Swap buffers
 		glfwSwapBuffers(window);
 		glfwPollEvents();

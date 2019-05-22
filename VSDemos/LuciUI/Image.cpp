@@ -1,4 +1,5 @@
 #include "Image.h"
+#include "Screen.h"
 
 #include <common/shader.hpp>
 #include <common/texture.hpp>
@@ -36,6 +37,8 @@ Image::Image(const char* path, float x, float y, float w, float h)
 	programID_image = LoadShaders("Image_vert.shader", "Image_frag.shader");
 	textureID = glGetUniformLocation(programID_image, "myTextureSampler");
 	rectID = glGetUniformLocation(programID_image, "rect");
+	screenWidthID = glGetUniformLocation(programID_image, "screenWidth");
+	screenHeightID = glGetUniformLocation(programID_image, "screenHeight");
 	
 	glGenBuffers(1, &vertexbuffer_image);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer_image);
@@ -45,7 +48,6 @@ Image::Image(const char* path, float x, float y, float w, float h)
 	glGenBuffers(1, &uvbuffer_image);
 	glBindBuffer(GL_ARRAY_BUFFER, uvbuffer_image);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(g_uv_buffer_data_image), g_uv_buffer_data_image, GL_STATIC_DRAW);
-
 }
 
 
@@ -64,6 +66,9 @@ void Image::Draw()
 	glUniform1i(textureID, 0);
 
 	glUniform4fv(rectID, 1, &x);
+
+	glUniform1f(screenWidthID, Screen::width);
+	glUniform1f(screenHeightID, Screen::height);
 
 	//glUniform4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
 

@@ -14,6 +14,8 @@ class Image
 	GLuint texture;
 	GLuint textureID;
 	GLuint rectID;
+	GLuint screenWidthID;
+	GLuint screenHeightID;
 
 	GLfloat x, y, w, h;
 	
