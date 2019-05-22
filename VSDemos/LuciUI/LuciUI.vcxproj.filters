@@ -8,11 +8,11 @@
     <Filter Include="common">
       <UniqueIdentifier>{80398a26-6bd8-4b1d-8500-ab6043733586}</UniqueIdentifier>
     </Filter>
+    <Filter Include="shader">
+      <UniqueIdentifier>{2933c757-a2f4-4cfe-84d5-d00d7666b278}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="LuciUI.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="common\controls.cpp">
       <Filter>common</Filter>
     </ClCompile>
@@ -37,6 +37,8 @@
     <ClCompile Include="common\vboindexer.cpp">
       <Filter>common</Filter>
     </ClCompile>
+    <ClCompile Include="Image.cpp" />
+    <ClCompile Include="LuciUI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common\controls.hpp">
@@ -63,5 +65,20 @@
     <ClInclude Include="common\vboindexer.hpp">
       <Filter>common</Filter>
     </ClInclude>
+    <ClInclude Include="Image.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="TextureFragmentShader.fragmentshader">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="TransformVertexShader.vertexshader">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="Image_frag.shader">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="Image_vert.shader">
+      <Filter>shader</Filter>
+    </None>
   </ItemGroup>
 </Project>

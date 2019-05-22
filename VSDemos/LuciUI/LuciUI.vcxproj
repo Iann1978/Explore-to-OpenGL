@@ -162,6 +162,7 @@
     <ClCompile Include="common\text2D.cpp" />
     <ClCompile Include="common\texture.cpp" />
     <ClCompile Include="common\vboindexer.cpp" />
+    <ClCompile Include="Image.cpp" />
     <ClCompile Include="LuciUI.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -173,6 +174,13 @@
     <ClInclude Include="common\text2D.hpp" />
     <ClInclude Include="common\texture.hpp" />
     <ClInclude Include="common\vboindexer.hpp" />
+    <ClInclude Include="Image.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image_frag.shader" />
+    <None Include="Image_vert.shader" />
+    <None Include="TextureFragmentShader.fragmentshader" />
+    <None Include="TransformVertexShader.vertexshader" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
