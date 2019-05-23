@@ -1,7 +1,7 @@
 #include "Image.h"
 #include "Input.h"
 #include "Screen.h"
-
+#include <stdio.h>
 
 #include <common/shader.hpp>
 #include <common/texture.hpp>
@@ -60,11 +60,14 @@ Image::Image(const char* path, float x, float y, float w, float h)
 Image::~Image()
 {
 }
-
+bool Image::RayCast(float x, float y)
+{
+	return  (x >= this->x && x <= (this->x + this->w) &&
+		y >= this->y && y <= (this->y + this->h));
+}
 void Image::Draw()
 {
-	if (Input::mousePosX >= x && Input::mousePosX <= (x + w) &&
-		Input::mousePosY >= y && Input::mousePosY <= (y + h))
+	if (RayCast(Input::mousePosX, Input::mousePosY))
 	{
 		status = 0.3f;
 	}
@@ -119,4 +122,16 @@ void Image::Draw()
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);
 
+}
+
+void Image::Update()
+{
+	if (Input::GetMouseButtonUp(0) && RayCast(Input::mousePosX, Input::mousePosY))
+	{
+		//printf("click a image.\n");
+		if (onClick)
+		{
+			onClick();
+		}
+	}
 }

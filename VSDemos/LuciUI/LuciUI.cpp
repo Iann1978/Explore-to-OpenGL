@@ -21,7 +21,10 @@ using namespace glm;
 #include <Input.h>
 #include <Screen.h>
 
-
+void OnClick()
+{
+	printf("An image is clicked.\n");
+}
 
 int main(void)
 {
@@ -86,6 +89,7 @@ int main(void)
 	Image image3("images/1.dds", x, y, width, height);
 	y += yint + height;
 	x = xint;
+	image3.onClick = OnClick;
 
 	Image image4("images/3.dds", x, y, width, height);
 	x += xint + width;
@@ -99,7 +103,20 @@ int main(void)
 		// Clear the screen
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		glfwGetCursorPos(window, &Input::mousePosX, &Input::mousePosY);
+		Input::Update(window);
+		/*glfwGetCursorPos(window, &Input::mousePosX, &Input::mousePosY);
+
+		if (glfwGetMouseButton(window, 0))
+		{
+			printf("mouse\n");
+		}
+*/
+		image.Update();
+		image2.Update();
+		image3.Update();
+		image4.Update();
+		image5.Update();
+		image6.Update();
 
 		image.Draw();
 		image2.Draw();

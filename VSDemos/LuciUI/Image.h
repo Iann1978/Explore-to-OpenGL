@@ -8,6 +8,7 @@
 
 class Image
 {
+	typedef void (*FuncOnClick)();
 	GLuint programID_image;
 	GLuint vertexbuffer_image;
 	GLuint uvbuffer_image;
@@ -22,6 +23,7 @@ class Image
 
 public:
 	GLfloat status;
+	FuncOnClick onClick = nullptr;
 	
 
 public:
@@ -29,5 +31,9 @@ public:
 	~Image();
 
 	void Draw();
+	void Update();
+
+private:
+	bool RayCast(float x, float y);
 };
 
