@@ -59,6 +59,10 @@ Image::Image(const char* path, float x, float y, float w, float h)
 
 Image::~Image()
 {
+	glDeleteBuffers(1, &uvbuffer_image);
+	glDeleteBuffers(1, &vertexbuffer_image);
+	glDeleteProgram(programID_image);
+	glDeleteTextures(1, &texture);
 }
 bool Image::RayCast(float x, float y)
 {
