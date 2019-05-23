@@ -39,7 +39,7 @@ Image::Image(const char* path, float x, float y, float w, float h)
 	//texture = loadDDS("uvtemplate.DDS");
 	texture = loadDDS(path);
 	//texture = loadDDS("1.dds");
-	programID_image = LoadShaders("Image_vert.shader", "Image_frag.shader");
+	programID_image = LoadShaders("shaders/Image_vert.shader", "shaders/Image_frag.shader");
 	textureID = glGetUniformLocation(programID_image, "myTextureSampler");
 	rectID = glGetUniformLocation(programID_image, "rect");
 	screenWidthID = glGetUniformLocation(programID_image, "screenWidth");
