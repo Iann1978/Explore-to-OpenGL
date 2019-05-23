@@ -73,7 +73,7 @@ bool Image::RayCast(float x, float y)
 	return  (x >= this->x && x <= (this->x + this->w) &&
 		y >= this->y && y <= (this->y + this->h));
 }
-void Image::Draw()
+void Image::Render()
 {
 	if (RayCast(Input::mousePosX, Input::mousePosY))
 	{

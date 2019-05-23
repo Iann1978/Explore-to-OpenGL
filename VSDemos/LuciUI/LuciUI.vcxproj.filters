@@ -70,24 +70,19 @@
     <ClInclude Include="Input.h" />
     <ClInclude Include="Text.h" />
     <ClInclude Include="prebuild.h" />
+    <ClInclude Include="Engine.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Image_frag.shader">
+    <None Include="shaders\Image_frag.shader">
       <Filter>shader</Filter>
     </None>
-    <None Include="Image_vert.shader">
+    <None Include="shaders\Image_vert.shader">
       <Filter>shader</Filter>
     </None>
-    <None Include="TextVertexShader.fragmentshader">
+    <None Include="shaders\Text_frag.shader">
       <Filter>shader</Filter>
     </None>
-    <None Include="TextVertexShader.vertexshader">
-      <Filter>shader</Filter>
-    </None>
-    <None Include="Text_frag.shader">
-      <Filter>shader</Filter>
-    </None>
-    <None Include="Text_vert.shader">
+    <None Include="shaders\Text_vert.shader">
       <Filter>shader</Filter>
     </None>
   </ItemGroup>

@@ -196,6 +196,7 @@
     <ClInclude Include="common\text2D.hpp" />
     <ClInclude Include="common\texture.hpp" />
     <ClInclude Include="common\vboindexer.hpp" />
+    <ClInclude Include="Engine.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="prebuild.h" />
@@ -203,12 +204,10 @@
     <ClInclude Include="Text.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Image_frag.shader" />
-    <None Include="Image_vert.shader" />
-    <None Include="TextVertexShader.fragmentshader" />
-    <None Include="TextVertexShader.vertexshader" />
-    <None Include="Text_frag.shader" />
-    <None Include="Text_vert.shader" />
+    <None Include="shaders\Image_frag.shader" />
+    <None Include="shaders\Image_vert.shader" />
+    <None Include="shaders\Text_frag.shader" />
+    <None Include="shaders\Text_vert.shader" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,7 +1,7 @@
 #pragma once
+#include <Engine.h>
 
-
-class Text
+class Text : public IRenderable
 {
 	unsigned int Text2DTextureID;
 	unsigned int Text2DVertexBufferID;
@@ -22,6 +22,7 @@ public:
 	Text(const char* text, int x, int y, int fontSize);
 	~Text();
 
-	void Draw();
+	void Update() {};
+	void Render();
 };
 

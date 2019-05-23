@@ -132,7 +132,7 @@ void Text::cleanupText2D() {
 	glDeleteProgram(Text2DShaderID);
 }
 
-void Text::Draw()
+void Text::Render()
 {
 	//printText2D("BEIJING WEST MOUNT COMPOUNDI", 0, 0, 20);
 

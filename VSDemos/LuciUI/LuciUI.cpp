@@ -2,11 +2,14 @@
 #include "prebuild.h"
 GLFWwindow* window;
 
+#include <list>
+
 
 #include <common/shader.hpp>
 #include <common/texture.hpp>
 #include <common/text2D.hpp>
 
+#include <Engine.h>
 #include <Image.h>
 #include <Text.h>
 #include <Input.h>
@@ -68,6 +71,8 @@ int main(void)
 	glGenVertexArrays(1, &VertexArrayID);
 	glBindVertexArray(VertexArrayID);
 
+
+	std::list<IRenderable *> renders;
 	
 	
 	int xint = 20;
@@ -76,34 +81,49 @@ int main(void)
 	int y = yint; 
 	int width = 300; 
 	int height = 300;
-	Image image("images/1.dds", x, y, width, height);
-	Text text0_0("BEIJING WEST", x + 5, y+230, 24);
-	Text text0_1("MOUNT COMPOUNDI", x + 5, y+260, 20);
+	Image *image = new Image("images/1.dds", x, y, width, height);	
+	renders.push_back(image);
+	Text *text = new Text("BEIJING WEST", x + 5, y+230, 24);
+	renders.push_back(text);
+	text = new Text("MOUNT COMPOUNDI", x + 5, y+260, 20);
+	renders.push_back(text);
 
 	x += xint + width;
-	Image image2("images/3.dds", x, y, width, height);
-	Text text1_0("Baikal", x + 5, y + 5, 30);
-	//Text text2_1("MOUNT COMPOUNDI", x + 5, y + 260);
+	image = new Image("images/3.dds", x, y, width, height);
+	renders.push_back(image);
+	text = new Text("Baikal", x + 5, y + 5, 30);
+	renders.push_back(text);
+
 
 	x += xint + width;
-	Image image3("images/1.dds", x, y, width, height);
-	image3.onClick = OnClick;
-	Text text2_0("BEIJING WEST", x + 5, y + 230, 24);
-	Text text2_1("MOUNT COMPOUNDI", x + 5, y + 260, 20);
+	image = new Image("images/1.dds", x, y, width, height);
+	image->onClick = OnClick;
+	renders.push_back(image);
+	text = new Text("BEIJING WEST", x + 5, y + 230, 24);
+	renders.push_back(text);
+	text = new Text("MOUNT COMPOUNDI", x + 5, y + 260, 20);
+	renders.push_back(text);
 
 	y += yint + height;
 	x = xint;
-	Image image4("images/3.dds", x, y, width, height);
-	Text text3_0("Baikal", x + 5, y + 5, 30);
+	image = new Image("images/3.dds", x, y, width, height);
+	renders.push_back(image);
+	text = new Text("Baikal", x + 5, y + 5, 30);
+	renders.push_back(text);
 
 	x += xint + width;
-	Image image5("images/1.dds", x, y, width, height);
-	Text text4_0("BEIJING WEST", x + 5, y + 230, 24);
-	Text text4_1("MOUNT COMPOUNDI", x + 5, y + 260, 20);
+	image = new Image("images/1.dds", x, y, width, height);
+	renders.push_back(image);
+	text = new Text("BEIJING WEST", x + 5, y + 230, 24);
+	renders.push_back(text);
+	text = new Text("MOUNT COMPOUNDI", x + 5, y + 260, 20);
+	renders.push_back(text);
 
 	x += xint + width;
-	Image image6("images/3.dds", x, y, width, height);
-	Text text5_0("Baikal", x + 5, y + 5, 30);
+	image = new Image("images/3.dds", x, y, width, height);
+	renders.push_back(image);
+	text = new Text("Baikal", x + 5, y + 5, 30);
+	renders.push_back(text);
 
 	
 
@@ -123,31 +143,44 @@ int main(void)
 			printf("mouse\n");
 		}
 */
-		image.Update();
+		
+		for (std::list<IRenderable*>::iterator it = renders.begin(); it != renders.end();
+			it++)
+		{
+			(*it)->Update();
+		}
+
+
+		for (std::list<IRenderable*>::iterator it = renders.begin(); it != renders.end();
+			it++)
+		{
+			(*it)->Render();
+		}
+		/*image.Update();
 		image2.Update();
 		image3.Update();
 		image4.Update();
 		image5.Update();
 		image6.Update();
 
-		image.Draw();
-		image2.Draw();
-		image3.Draw();
-		image4.Draw();
-		image5.Draw();
-		image6.Draw();
+		image.Render();
+		image2.Render();
+		image3.Render();
+		image4.Render();
+		image5.Render();
+		image6.Render();
 
-		text0_0.Draw();
-		text0_1.Draw();
-		text1_0.Draw();
+		text0_0.Render();
+		text0_1.Render();
+		text1_0.Render();
 
-		text2_0.Draw();
-		text2_1.Draw();
-		text3_0.Draw();
+		text2_0.Render();
+		text2_1.Render();
+		text3_0.Render();
 
-		text4_0.Draw();
-		text4_1.Draw();
-		text5_0.Draw();
+		text4_0.Render();
+		text4_1.Render();
+		text5_0.Render();*/
 /*
 		char text[256];
 		sprintf(text, "%.2f sec", glfwGetTime());
@@ -159,6 +192,12 @@ int main(void)
 	} // Check if the ESC key was pressed or the window was closed
 	while (glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS &&
 		glfwWindowShouldClose(window) == 0);
+
+	for (std::list<IRenderable*>::iterator it = renders.begin(); it != renders.end();
+		it++)
+	{
+		delete (*it);
+	}
 
 	// Cleanup VBO and shader
 	glDeleteVertexArrays(1, &VertexArrayID);
