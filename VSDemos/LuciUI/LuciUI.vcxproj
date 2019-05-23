@@ -166,6 +166,7 @@
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="LuciUI.cpp" />
     <ClCompile Include="Screen.cpp" />
+    <ClCompile Include="Text.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common\controls.hpp" />
@@ -179,12 +180,15 @@
     <ClInclude Include="Image.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Screen.h" />
+    <ClInclude Include="Text.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Image_frag.shader" />
     <None Include="Image_vert.shader" />
-    <None Include="TextureFragmentShader.fragmentshader" />
-    <None Include="TransformVertexShader.vertexshader" />
+    <None Include="TextVertexShader.fragmentshader" />
+    <None Include="TextVertexShader.vertexshader" />
+    <None Include="Text_frag.shader" />
+    <None Include="Text_vert.shader" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

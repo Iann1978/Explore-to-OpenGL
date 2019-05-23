@@ -37,6 +37,7 @@
     <ClCompile Include="LuciUI.cpp" />
     <ClCompile Include="Screen.cpp" />
     <ClCompile Include="Input.cpp" />
+    <ClCompile Include="Text.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common\controls.hpp">
@@ -66,18 +67,25 @@
     <ClInclude Include="Image.h" />
     <ClInclude Include="Screen.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="Text.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="TextureFragmentShader.fragmentshader">
-      <Filter>shader</Filter>
-    </None>
-    <None Include="TransformVertexShader.vertexshader">
-      <Filter>shader</Filter>
-    </None>
     <None Include="Image_frag.shader">
       <Filter>shader</Filter>
     </None>
     <None Include="Image_vert.shader">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="TextVertexShader.fragmentshader">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="TextVertexShader.vertexshader">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="Text_frag.shader">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="Text_vert.shader">
       <Filter>shader</Filter>
     </None>
   </ItemGroup>

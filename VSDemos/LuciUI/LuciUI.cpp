@@ -18,8 +18,12 @@ using namespace glm;
 #include <common/texture.hpp>
 
 #include <Image.h>
+#include <Text.h>
 #include <Input.h>
 #include <Screen.h>
+#include <common/text2D.hpp>
+
+#pragma warning (disable: 4996)
 
 void OnClick()
 {
@@ -80,24 +84,42 @@ int main(void)
 	int yint = 20;
 	int x = xint;
 	int y = yint; 
-	int width = 200; 
-	int height = 200;
+	int width = 300; 
+	int height = 300;
 	Image image("images/1.dds", x, y, width, height);
+	Text text0_0("BEIJING WEST", x + 5, y+230, 24);
+	Text text0_1("MOUNT COMPOUNDI", x + 5, y+260, 20);
+
 	x += xint + width;
 	Image image2("images/3.dds", x, y, width, height);
+	Text text1_0("Baikal", x + 5, y + 5, 30);
+	//Text text2_1("MOUNT COMPOUNDI", x + 5, y + 260);
+
 	x += xint + width;
 	Image image3("images/1.dds", x, y, width, height);
+	image3.onClick = OnClick;
+	Text text2_0("BEIJING WEST", x + 5, y + 230, 24);
+	Text text2_1("MOUNT COMPOUNDI", x + 5, y + 260, 20);
+
 	y += yint + height;
 	x = xint;
-	image3.onClick = OnClick;
-
 	Image image4("images/3.dds", x, y, width, height);
+	Text text3_0("Baikal", x + 5, y + 5, 30);
+
 	x += xint + width;
 	Image image5("images/1.dds", x, y, width, height);
+	Text text4_0("BEIJING WEST", x + 5, y + 230, 24);
+	Text text4_1("MOUNT COMPOUNDI", x + 5, y + 260, 20);
+
 	x += xint + width;
 	Image image6("images/3.dds", x, y, width, height);
-	x += xint + width;
+	Text text5_0("Baikal", x + 5, y + 5, 30);
 
+	
+
+
+	
+	
 	
 	do {
 		// Clear the screen
@@ -125,6 +147,21 @@ int main(void)
 		image5.Draw();
 		image6.Draw();
 
+		text0_0.Draw();
+		text0_1.Draw();
+		text1_0.Draw();
+
+		text2_0.Draw();
+		text2_1.Draw();
+		text3_0.Draw();
+
+		text4_0.Draw();
+		text4_1.Draw();
+		text5_0.Draw();
+/*
+		char text[256];
+		sprintf(text, "%.2f sec", glfwGetTime());
+		printText2D(text, 0, 0, 60);*/
 		// Swap buffers
 		glfwSwapBuffers(window);
 		glfwPollEvents();
@@ -135,7 +172,7 @@ int main(void)
 
 	// Cleanup VBO and shader
 	glDeleteVertexArrays(1, &VertexArrayID);
-
+	
 	// Close OpenGL window and terminate GLFW
 	glfwTerminate();
 
