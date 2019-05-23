@@ -1,27 +1,17 @@
 ﻿// Include standard headers
-#include <stdio.h>
-#include <stdlib.h>
-
-// Include GLEW
-#include <GL/glew.h>
-
-// Include GLFW
-#include <GLFW/glfw3.h>
+#include "prebuild.h"
 GLFWwindow* window;
 
-// Include GLM
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-using namespace glm;
 
 #include <common/shader.hpp>
 #include <common/texture.hpp>
+#include <common/text2D.hpp>
 
 #include <Image.h>
 #include <Text.h>
 #include <Input.h>
 #include <Screen.h>
-#include <common/text2D.hpp>
+
 
 #pragma warning (disable: 4996)
 

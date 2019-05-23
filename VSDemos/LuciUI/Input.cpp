@@ -1,10 +1,6 @@
+#include "prebuild.h"
 #include "Input.h"
-#include <stdio.h>
-#include <string.h>
 
-// Include GLFW
-#include <GLFW/glfw3.h>
-//GLFWwindow* window;
 
 double Input::mousePosX;
 double Input::mousePosY;

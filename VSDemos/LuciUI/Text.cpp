@@ -1,25 +1,8 @@
-#include "Text.h"
-
-// Include standard headers
-#include <stdio.h>
-#include <stdlib.h>
-
-// Include GLEW
-#include <GL/glew.h>
-
-// Include GLFW
-#include <GLFW/glfw3.h>
-
-
-// Include GLM
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-using namespace glm;
-
+#include "prebuild.h"
 #include <common/texture.hpp>
 #include <common/shader.hpp>
-
 #include <vector>
+#include <Text.h>
 #include <Screen.h>
 
 Text::Text(const char* text, int x, int y, int fontSize)

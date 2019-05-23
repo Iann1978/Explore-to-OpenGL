@@ -1,5 +1,5 @@
 #pragma once
-// Include GLFW
+
 
 class Input
 {

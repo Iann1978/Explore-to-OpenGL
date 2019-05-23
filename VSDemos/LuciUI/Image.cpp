@@ -1,11 +1,15 @@
-#include "Image.h"
-#include "Input.h"
-#include "Screen.h"
-#include <stdio.h>
-
+#include "prebuild.h"
 #include <common/shader.hpp>
 #include <common/texture.hpp>
-#include <stdlib.h>
+
+
+#include <Image.h>
+#include <Input.h>
+#include <Screen.h>
+
+
+
+
 
 Image::Image(const char* path, float x, float y, float w, float h)
 {
