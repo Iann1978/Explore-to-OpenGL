@@ -27,6 +27,63 @@ void OnClick()
 	clickImage->SetTexture("images/volume.dds");
 }
 
+void CreateRenders(std::list<IRenderable*>& renders)
+{
+	StatusBar* statusBar = new StatusBar();
+	renders.push_back(statusBar);
+
+	int xint = 20;
+	int yint = 20;
+	int x = xint;
+	int y = yint + 50;
+	int width = 300;
+	int height = 300;
+	Image* image = new Image("images/1.dds", x, y, width, height);
+	renders.push_back(image);
+	Text* text = new Text("BEIJING WEST", x + 5, y + 230, 24);
+	renders.push_back(text);
+	text = new Text("MOUNT COMPOUNDI", x + 5, y + 260, 20);
+	renders.push_back(text);
+
+	x += xint + width;
+	image = new Image("images/3.dds", x, y, width, height);
+	renders.push_back(image);
+	text = new Text("Baikal", x + 5, y + 5, 30);
+	renders.push_back(text);
+
+
+	x += xint + width;
+	image = new Image("images/1.dds", x, y, width, height);
+	clickImage = image;
+	image->onClick = OnClick;
+	renders.push_back(image);
+	text = new Text("BEIJING WEST", x + 5, y + 230, 24);
+	renders.push_back(text);
+	text = new Text("MOUNT COMPOUNDI", x + 5, y + 260, 20);
+	renders.push_back(text);
+
+	y += yint + height;
+	x = xint;
+	image = new Image("images/3.dds", x, y, width, height);
+	renders.push_back(image);
+	text = new Text("Baikal", x + 5, y + 5, 30);
+	renders.push_back(text);
+
+	x += xint + width;
+	image = new Image("images/1.dds", x, y, width, height);
+	renders.push_back(image);
+	text = new Text("BEIJING WEST", x + 5, y + 230, 24);
+	renders.push_back(text);
+	text = new Text("MOUNT COMPOUNDI", x + 5, y + 260, 20);
+	renders.push_back(text);
+
+	x += xint + width;
+	image = new Image("images/3.dds", x, y, width, height);
+	renders.push_back(image);
+	text = new Text("Baikal", x + 5, y + 5, 30);
+	renders.push_back(text);
+}
+
 int main(void)
 {
 	// Initialise GLFW
@@ -77,78 +134,14 @@ int main(void)
 
 
 	std::list<IRenderable *> renders;
-	StatusBar* statusBar = new StatusBar();
-	renders.push_back(statusBar);
-	
-	int xint = 20;
-	int yint = 20;
-	int x = xint;
-	int y = yint + 50; 
-	int width = 300; 
-	int height = 300;
-	Image *image = new Image("images/1.dds", x, y, width, height);	
-	renders.push_back(image);
-	Text *text = new Text("BEIJING WEST", x + 5, y+230, 24);
-	renders.push_back(text);
-	text = new Text("MOUNT COMPOUNDI", x + 5, y+260, 20);
-	renders.push_back(text);
-
-	x += xint + width;
-	image = new Image("images/3.dds", x, y, width, height);
-	renders.push_back(image);
-	text = new Text("Baikal", x + 5, y + 5, 30);
-	renders.push_back(text);
-
-
-	x += xint + width;
-	image = new Image("images/1.dds", x, y, width, height);
-	clickImage = image;
-	image->onClick = OnClick;
-	renders.push_back(image);
-	text = new Text("BEIJING WEST", x + 5, y + 230, 24);
-	renders.push_back(text);
-	text = new Text("MOUNT COMPOUNDI", x + 5, y + 260, 20);
-	renders.push_back(text);
-
-	y += yint + height;
-	x = xint;
-	image = new Image("images/3.dds", x, y, width, height);
-	renders.push_back(image);
-	text = new Text("Baikal", x + 5, y + 5, 30);
-	renders.push_back(text);
-
-	x += xint + width;
-	image = new Image("images/1.dds", x, y, width, height);
-	renders.push_back(image);
-	text = new Text("BEIJING WEST", x + 5, y + 230, 24);
-	renders.push_back(text);
-	text = new Text("MOUNT COMPOUNDI", x + 5, y + 260, 20);
-	renders.push_back(text);
-
-	x += xint + width;
-	image = new Image("images/3.dds", x, y, width, height);
-	renders.push_back(image);
-	text = new Text("Baikal", x + 5, y + 5, 30);
-	renders.push_back(text);
-
-	
-
-
-	
-	
+	CreateRenders(renders);
 	
 	do {
 		// Clear the screen
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		Input::Update(window);
-		/*glfwGetCursorPos(window, &Input::mousePosX, &Input::mousePosY);
 
-		if (glfwGetMouseButton(window, 0))
-		{
-			printf("mouse\n");
-		}
-*/
 		
 		for (std::list<IRenderable*>::iterator it = renders.begin(); it != renders.end();
 			it++)
@@ -162,35 +155,7 @@ int main(void)
 		{
 			(*it)->Render();
 		}
-		/*image.Update();
-		image2.Update();
-		image3.Update();
-		image4.Update();
-		image5.Update();
-		image6.Update();
-
-		image.Render();
-		image2.Render();
-		image3.Render();
-		image4.Render();
-		image5.Render();
-		image6.Render();
-
-		text0_0.Render();
-		text0_1.Render();
-		text1_0.Render();
-
-		text2_0.Render();
-		text2_1.Render();
-		text3_0.Render();
-
-		text4_0.Render();
-		text4_1.Render();
-		text5_0.Render();*/
-/*
-		char text[256];
-		sprintf(text, "%.2f sec", glfwGetTime());
-		printText2D(text, 0, 0, 60);*/
+		
 		// Swap buffers
 		glfwSwapBuffers(window);
 		glfwPollEvents();
