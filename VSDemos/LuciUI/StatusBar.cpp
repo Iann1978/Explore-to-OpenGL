@@ -14,12 +14,18 @@ StatusBar::StatusBar()
 	
 	UpdateTime();
 
-	carrier = new Text("china mobile", 0, 5, 24);
+	carrier = new Text("china mobile", 38, 5, 24);
+
+	wifi = new Image("images/wan.dds", 10, 5, 25, 25);
+	volume = new Image("images/volume.dds", 1920-40, 5, 25, 25);
 }
 
 
 StatusBar::~StatusBar()
 {
+	delete volume;
+	delete wifi;
+	delete carrier;
 	delete time;
 }
 
@@ -33,6 +39,8 @@ void StatusBar::Render()
 {
 	RenderTime();
 	carrier->Render();
+	wifi->Render();
+	volume->Render();
 }
 
 void StatusBar::UpdateTime()

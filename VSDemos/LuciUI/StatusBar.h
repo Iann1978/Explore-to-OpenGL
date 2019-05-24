@@ -1,6 +1,7 @@
 #pragma once
 #include <Engine.h>
 #include <Text.h>
+#include <Image.h>
 class StatusBar : public IRenderable
 {
 	// time
@@ -10,6 +11,9 @@ class StatusBar : public IRenderable
 	void RenderTime();
 
 	Text* carrier;
+
+	Image* wifi;
+	Image* volume;
 
 	
 public:
