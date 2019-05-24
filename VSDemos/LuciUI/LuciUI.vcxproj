@@ -185,6 +185,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Screen.cpp" />
+    <ClCompile Include="StatusBar.cpp" />
     <ClCompile Include="Text.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -201,6 +202,7 @@
     <ClInclude Include="Input.h" />
     <ClInclude Include="prebuild.h" />
     <ClInclude Include="Screen.h" />
+    <ClInclude Include="StatusBar.h" />
     <ClInclude Include="Text.h" />
   </ItemGroup>
   <ItemGroup>

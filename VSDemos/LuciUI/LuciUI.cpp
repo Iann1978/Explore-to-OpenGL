@@ -14,6 +14,7 @@ GLFWwindow* window;
 #include <Text.h>
 #include <Input.h>
 #include <Screen.h>
+#include <StatusBar.h>
 
 
 #pragma warning (disable: 4996)
@@ -73,12 +74,13 @@ int main(void)
 
 
 	std::list<IRenderable *> renders;
-	
+	StatusBar* statusBar = new StatusBar();
+	renders.push_back(statusBar);
 	
 	int xint = 20;
 	int yint = 20;
 	int x = xint;
-	int y = yint; 
+	int y = yint + 50; 
 	int width = 300; 
 	int height = 300;
 	Image *image = new Image("images/1.dds", x, y, width, height);	
