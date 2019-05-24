@@ -9,11 +9,11 @@ GLFWwindow* window;
 #include <common/texture.hpp>
 #include <common/text2D.hpp>
 
-#include <Engine.h>
-#include <Image.h>
-#include <Text.h>
-#include <Input.h>
-#include <Screen.h>
+#include <Engine/Engine.h>
+#include <Engine/Image.h>
+#include <Engine/Text.h>
+#include <Engine/Input.h>
+#include <Engine/Screen.h>
 #include <StatusBar.h>
 
 

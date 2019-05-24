@@ -2,8 +2,8 @@
 #include <common/texture.hpp>
 #include <common/shader.hpp>
 #include <vector>
-#include <Text.h>
-#include <Screen.h>
+#include <Engine/Text.h>
+#include <Engine/Screen.h>
 
 Text::Text(const char* text, int x, int y, int fontSize)
 {

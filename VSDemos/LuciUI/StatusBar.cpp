@@ -1,6 +1,6 @@
 #include "prebuild.h"
 #include "StatusBar.h"
-#include <Text.h>
+
 #include <chrono>
 #include <ctime>
 #include <iomanip>

@@ -7,6 +7,9 @@
     <Filter Include="shader">
       <UniqueIdentifier>{2933c757-a2f4-4cfe-84d5-d00d7666b278}</UniqueIdentifier>
     </Filter>
+    <Filter Include="engine">
+      <UniqueIdentifier>{64add047-7d37-4a8e-a012-0aeb9a7b646f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="common\controls.cpp">
@@ -33,13 +36,21 @@
     <ClCompile Include="common\vboindexer.cpp">
       <Filter>common</Filter>
     </ClCompile>
-    <ClCompile Include="Image.cpp" />
     <ClCompile Include="LuciUI.cpp" />
-    <ClCompile Include="Screen.cpp" />
-    <ClCompile Include="Input.cpp" />
-    <ClCompile Include="Text.cpp" />
     <ClCompile Include="prebuild.cpp" />
     <ClCompile Include="StatusBar.cpp" />
+    <ClCompile Include="engine\Image.cpp">
+      <Filter>engine</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\Input.cpp">
+      <Filter>engine</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\Screen.cpp">
+      <Filter>engine</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\Text.cpp">
+      <Filter>engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common\controls.hpp">
@@ -66,13 +77,23 @@
     <ClInclude Include="common\vboindexer.hpp">
       <Filter>common</Filter>
     </ClInclude>
-    <ClInclude Include="Image.h" />
-    <ClInclude Include="Screen.h" />
-    <ClInclude Include="Input.h" />
-    <ClInclude Include="Text.h" />
     <ClInclude Include="prebuild.h" />
-    <ClInclude Include="Engine.h" />
     <ClInclude Include="StatusBar.h" />
+    <ClInclude Include="engine\Engine.h">
+      <Filter>engine</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\Image.h">
+      <Filter>engine</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\Input.h">
+      <Filter>engine</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\Screen.h">
+      <Filter>engine</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\Text.h">
+      <Filter>engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\Image_frag.shader">

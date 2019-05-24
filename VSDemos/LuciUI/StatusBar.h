@@ -1,7 +1,7 @@
 #pragma once
-#include <Engine.h>
-#include <Text.h>
-#include <Image.h>
+#include <Engine/Engine.h>
+#include <Engine/Text.h>
+#include <Engine/Image.h>
 class StatusBar : public IRenderable
 {
 	// time
