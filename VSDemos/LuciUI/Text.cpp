@@ -112,7 +112,7 @@ void Text::printText2D(const char* text, int x, int y, int size) {
 	// Draw call
 	glDrawArrays(GL_TRIANGLES, 0, vertices.size());
 
-	glDisable(GL_BLEND);
+	
 
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);
