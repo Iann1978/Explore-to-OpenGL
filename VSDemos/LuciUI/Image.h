@@ -8,7 +8,7 @@ class Image : public IRenderable
 	GLuint programID_image;
 	GLuint vertexbuffer_image;
 	GLuint uvbuffer_image;
-	GLuint texture;
+	GLuint texture = 0;
 	GLuint textureID;
 	GLuint rectID;
 	GLuint screenWidthID;
@@ -28,6 +28,7 @@ public:
 
 	void Update();
 	void Render();
+	void SetTexture(const char* path);
 	
 
 private:

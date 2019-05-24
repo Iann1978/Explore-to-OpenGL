@@ -19,9 +19,12 @@ GLFWwindow* window;
 
 #pragma warning (disable: 4996)
 
+Image* clickImage = nullptr;
+
 void OnClick()
 {
 	printf("An image is clicked.\n");
+	clickImage->SetTexture("images/volume.dds");
 }
 
 int main(void)
@@ -99,6 +102,7 @@ int main(void)
 
 	x += xint + width;
 	image = new Image("images/1.dds", x, y, width, height);
+	clickImage = image;
 	image->onClick = OnClick;
 	renders.push_back(image);
 	text = new Text("BEIJING WEST", x + 5, y + 230, 24);

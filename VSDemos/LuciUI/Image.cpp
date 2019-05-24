@@ -68,6 +68,18 @@ Image::~Image()
 	glDeleteProgram(programID_image);
 	glDeleteTextures(1, &texture);
 }
+
+void Image::SetTexture(const char* path)
+{
+	if (texture)
+	{
+		glDeleteTextures(1, &texture);
+		texture = 0;
+	}
+	
+	texture = loadDDS(path);
+}
+
 bool Image::RayCast(float x, float y)
 {
 	return  (x >= this->x && x <= (this->x + this->w) &&
