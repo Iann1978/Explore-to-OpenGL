@@ -51,6 +51,9 @@
     <ClCompile Include="engine\Text.cpp">
       <Filter>engine</Filter>
     </ClCompile>
+    <ClCompile Include="engine\Time.cpp">
+      <Filter>engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common\controls.hpp">
@@ -92,6 +95,9 @@
       <Filter>engine</Filter>
     </ClInclude>
     <ClInclude Include="engine\Text.h">
+      <Filter>engine</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\Time.h">
       <Filter>engine</Filter>
     </ClInclude>
   </ItemGroup>

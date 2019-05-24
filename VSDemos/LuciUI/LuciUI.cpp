@@ -10,10 +10,13 @@ GLFWwindow* window;
 #include <common/text2D.hpp>
 
 #include <Engine/Engine.h>
-#include <Engine/Image.h>
-#include <Engine/Text.h>
+#include <Engine/Time.h>
 #include <Engine/Input.h>
 #include <Engine/Screen.h>
+#include <Engine/Image.h>
+#include <Engine/Text.h>
+
+
 #include <StatusBar.h>
 
 
@@ -29,6 +32,7 @@ void OnClick()
 
 void CreateRenders(std::list<IRenderable*>& renders)
 {
+	Time::UpdateAtGameStart();
 	StatusBar* statusBar = new StatusBar();
 	renders.push_back(statusBar);
 
@@ -137,10 +141,14 @@ int main(void)
 	CreateRenders(renders);
 	
 	do {
+		Time::UpdateAtFrameStart();
+		Input::Update(window);
+
+
 		// Clear the screen
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		Input::Update(window);
+		
 
 		
 		for (std::list<IRenderable*>::iterator it = renders.begin(); it != renders.end();

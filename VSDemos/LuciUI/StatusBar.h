@@ -13,6 +13,7 @@ class StatusBar : public IRenderable
 	Text* carrier;
 
 	Image* wifi;
+	void UpdateWifi();
 	Image* volume;
 
 	

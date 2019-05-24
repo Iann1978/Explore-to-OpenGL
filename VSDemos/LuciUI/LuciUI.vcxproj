@@ -182,6 +182,7 @@
     <ClCompile Include="engine\Input.cpp" />
     <ClCompile Include="engine\Screen.cpp" />
     <ClCompile Include="engine\Text.cpp" />
+    <ClCompile Include="engine\Time.cpp" />
     <ClCompile Include="LuciUI.cpp" />
     <ClCompile Include="prebuild.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -202,6 +203,7 @@
     <ClInclude Include="engine\Input.h" />
     <ClInclude Include="engine\Screen.h" />
     <ClInclude Include="engine\Text.h" />
+    <ClInclude Include="engine\Time.h" />
     <ClInclude Include="prebuild.h" />
     <ClInclude Include="StatusBar.h" />
   </ItemGroup>

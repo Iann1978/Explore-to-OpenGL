@@ -1,4 +1,5 @@
 #include "prebuild.h"
+#include "Engine/Time.h"
 #include "StatusBar.h"
 
 #include <chrono>
@@ -33,6 +34,7 @@ StatusBar::~StatusBar()
 void StatusBar::Update()
 {
 	UpdateTime();
+	UpdateWifi();
 }
 
 void StatusBar::Render()
@@ -58,4 +60,12 @@ void StatusBar::UpdateTime()
 void StatusBar::RenderTime()
 {
 	time->Render();
+}
+
+void StatusBar::UpdateWifi()
+{
+	int n = ((int)Time::time) % 6;
+	char path[100];
+	sprintf_s(path, "images/wan%d.dds", n);
+	wifi->SetTexture(path);
 }
