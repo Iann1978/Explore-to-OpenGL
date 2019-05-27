@@ -60,6 +60,9 @@
     <ClCompile Include="engine\Cube.cpp">
       <Filter>engine</Filter>
     </ClCompile>
+    <ClCompile Include="engine\Camera.cpp">
+      <Filter>engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common\controls.hpp">
@@ -110,6 +113,9 @@
       <Filter>engine</Filter>
     </ClInclude>
     <ClInclude Include="engine\Cube.h">
+      <Filter>engine</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\Camera.h">
       <Filter>engine</Filter>
     </ClInclude>
   </ItemGroup>

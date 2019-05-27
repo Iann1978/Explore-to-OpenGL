@@ -6,14 +6,14 @@
 #include <Engine/Cube.h>
 #include <Engine/Input.h>
 #include <Engine/Screen.h>
+#include <Engine/Camera.h>
 
 
 
 
 
 Cube::Cube(const char* path, float x, float y, float w, float h)
-{
-	
+{	
 	static const GLfloat g_vertex_buffer_data_Cube[] = {
 		-1.0f,-1.0f,-1.0f,
 		-1.0f,-1.0f, 1.0f,
@@ -111,6 +111,8 @@ Cube::Cube(const char* path, float x, float y, float w, float h)
 	glGenBuffers(1, &uvbuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(g_uv_buffer_data_Cube), g_uv_buffer_data_Cube, GL_STATIC_DRAW);
+
+	modelMatrix = glm::mat4(1.0f);
 }
 
 
@@ -136,20 +138,18 @@ void Cube::SetTexture(const char* path)
 
 void Cube::Render()
 {
-	glm::mat4 Projection = glm::perspective(glm::radians(45.0f), 1.0f * Screen::width / Screen::height, 0.1f, 100.0f);
+	Camera::projectionMatrix = glm::perspective(glm::radians(45.0f), 1.0f * Screen::width / Screen::height, 0.1f, 100.0f);
 	// Camera matrix
-	glm::mat4 View = glm::lookAt(
+	Camera::viewMatrix = glm::lookAt(
 		glm::vec3(4, 3, 3), // Camera is at (4,3,3), in World Space
 		glm::vec3(0, 0, 0), // and looks at the origin
 		glm::vec3(0, 1, 0)  // Head is up (set to 0,-1,0 to look upside-down)
 	);
 	// Model matrix : an identity matrix (model will be at the origin)
-	glm::mat4 Model = glm::mat4(1.0f);
+	
 	// Our ModelViewProjection : multiplication of our 3 matrices
-	glm::mat4 MVP = Projection * View * Model; // Remember, matrix multiplication is the other way around
+	glm::mat4 MVP = Camera::projectionMatrix * Camera::viewMatrix * modelMatrix; // Remember, matrix multiplication is the other way around
 
-
-	//MVP = glm::mat4(1.0f);
 
 	glUseProgram(program);
 

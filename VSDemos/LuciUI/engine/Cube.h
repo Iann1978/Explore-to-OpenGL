@@ -10,6 +10,7 @@ class Cube : public IRenderable
 	GLuint textureID;
 	GLuint mvpID;
 
+	glm::mat4 modelMatrix;
 public:
 	Cube(const char* path, float x = 0.0f, float y = 0.0f, float w = 1.0f, float h = 1.0f);
 	~Cube();
