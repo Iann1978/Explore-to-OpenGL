@@ -82,9 +82,6 @@
     </ClInclude>
     <ClInclude Include="prebuild.h" />
     <ClInclude Include="StatusBar.h" />
-    <ClInclude Include="engine\Engine.h">
-      <Filter>engine</Filter>
-    </ClInclude>
     <ClInclude Include="engine\Image.h">
       <Filter>engine</Filter>
     </ClInclude>
@@ -98,6 +95,9 @@
       <Filter>engine</Filter>
     </ClInclude>
     <ClInclude Include="engine\Time.h">
+      <Filter>engine</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\Randerable.h">
       <Filter>engine</Filter>
     </ClInclude>
   </ItemGroup>
