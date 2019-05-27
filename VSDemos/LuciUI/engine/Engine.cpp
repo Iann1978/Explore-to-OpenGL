@@ -7,6 +7,7 @@
 #include <Engine/Time.h>
 #include <Engine/Input.h>
 #include <Engine/Screen.h>
+#include <Engine/Camera.h>
 #include <Engine/Renderable.h>
 #include <Engine/Engine.h>
 
@@ -16,7 +17,11 @@ GLFWwindow* window;
 GLuint VertexArrayID;
 Engine::Engine()
 {
+	Screen::width = 1920;
+	Screen::height = 1080;
+
 	Time::UpdateAtGameStart();
+	Camera::UpdateAtGameStart();
 
 	// Initialise GLFW
 	if (!glfwInit())
@@ -31,8 +36,7 @@ Engine::Engine()
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // To make MacOS happy; should not be needed
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	Screen::width = 1920;
-	Screen::height = 1080;
+	
 	// Open a window and create its OpenGL context
 	window = glfwCreateWindow(Screen::width, Screen::height, "Tutorial 05 - Textured Cube", NULL, NULL);
 	if (window == NULL) {
