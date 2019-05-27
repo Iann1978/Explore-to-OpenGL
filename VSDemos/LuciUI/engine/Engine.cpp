@@ -86,6 +86,7 @@ void Engine::Run()
 	do {
 		Time::UpdateAtFrameStart();
 		Input::Update(window);
+		Camera::UpdateAtFrameStart();
 
 
 		// Clear the screen

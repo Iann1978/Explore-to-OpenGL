@@ -24,5 +24,5 @@ void Time::UpdateAtFrameStart()
 	std::chrono::microseconds duation_to_start = std::chrono::duration_cast<std::chrono::microseconds>(now - start);
 	std::chrono::microseconds duation_to_last = std::chrono::duration_cast<std::chrono::microseconds>(now - last);
 	time = 1.0f * duation_to_start.count() / 1000000;
-	deltaTime = 1.0f * duation_to_start.count() / 1000000;
+	deltaTime = 1.0f * duation_to_last.count() / 1000000;
 }
