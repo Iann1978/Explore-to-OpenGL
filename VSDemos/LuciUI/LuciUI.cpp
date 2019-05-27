@@ -15,6 +15,7 @@
 #include <Engine/Screen.h>
 #include <Engine/Image.h>
 #include <Engine/Text.h>
+#include <Engine/Cube.h>
 #include <Engine/Engine.h>
 
 
@@ -33,7 +34,7 @@ void OnClick()
 
 void CreateUI(std::list<IRenderable*>& renders)
 {
-	Time::UpdateAtGameStart();
+	
 	StatusBar* statusBar = new StatusBar();
 	renders.push_back(statusBar);
 
@@ -99,12 +100,33 @@ void DestroyUI(std::list<IRenderable*>& renders)
 	}
 }
 
+void CreateGeo(std::list<IRenderable*>& renders)
+{
+	Cube* cube = new Cube("images/1.dds", 0, 0, 100, 100);
+	renders.push_back(cube);
+}
+
+void DestroyGeo(std::list<IRenderable*>& renders)
+{
+	for (std::list<IRenderable*>::iterator it = renders.begin();
+		it != renders.end();
+		it++)
+	{
+		delete (*it);
+	}
+}
+
 int main(void)
 {
 	Engine engine;
+	CreateGeo(engine.geolist);
 	CreateUI(engine.uilist);
+
 	engine.Run();
+
+	DestroyGeo(engine.geolist);
 	DestroyUI(engine.uilist);
+
 	return 0;
 }
 

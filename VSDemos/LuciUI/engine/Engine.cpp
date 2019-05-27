@@ -16,6 +16,7 @@ GLFWwindow* window;
 GLuint VertexArrayID;
 Engine::Engine()
 {
+	Time::UpdateAtGameStart();
 
 	// Initialise GLFW
 	if (!glfwInit())
@@ -77,7 +78,7 @@ Engine::~Engine()
 
 void Engine::Run()
 {
-	std::list<IRenderable*>& renders = uilist;
+	//std::list<IRenderable*>& renders = uilist;
 	do {
 		Time::UpdateAtFrameStart();
 		Input::Update(window);
@@ -89,18 +90,29 @@ void Engine::Run()
 
 
 
-		for (std::list<IRenderable*>::iterator it = renders.begin(); it != renders.end();
+		for (std::list<IRenderable*>::iterator it = uilist.begin(); 
+			it != uilist.end();
 			it++)
 		{
 			(*it)->Update();
 		}
 
 
-		for (std::list<IRenderable*>::iterator it = renders.begin(); it != renders.end();
+		for (std::list<IRenderable*>::iterator it = uilist.begin(); 
+			it != uilist.end();
 			it++)
 		{
 			(*it)->Render();
 		}
+
+
+		for (std::list<IRenderable*>::iterator it = geolist.begin();
+			it != geolist.end();
+			it++)
+		{
+			(*it)->Render();
+		}
+
 
 		// Swap buffers
 		glfwSwapBuffers(window);

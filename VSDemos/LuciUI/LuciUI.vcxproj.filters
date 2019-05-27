@@ -57,6 +57,9 @@
     <ClCompile Include="engine\Engine.cpp">
       <Filter>engine</Filter>
     </ClCompile>
+    <ClCompile Include="engine\Cube.cpp">
+      <Filter>engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common\controls.hpp">
@@ -106,6 +109,9 @@
     <ClInclude Include="engine\Renderable.h">
       <Filter>engine</Filter>
     </ClInclude>
+    <ClInclude Include="engine\Cube.h">
+      <Filter>engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\Image_frag.shader">
@@ -118,6 +124,12 @@
       <Filter>shader</Filter>
     </None>
     <None Include="shaders\Text_vert.shader">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="shaders\geo_frag.shader">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="shaders\geo_vert.shader">
       <Filter>shader</Filter>
     </None>
   </ItemGroup>
