@@ -149,7 +149,7 @@ void Image::Render()
 
 void Image::Update()
 {
-	if (Input::GetMouseButtonUp(0) && RayCast(Input::mousePosX, Input::mousePosY))
+	if (Input::GetMouseButtonUp(Input::LeftButton) && RayCast(Input::mousePosX, Input::mousePosY))
 	{
 		//printf("click a image.\n");
 		if (onClick)
