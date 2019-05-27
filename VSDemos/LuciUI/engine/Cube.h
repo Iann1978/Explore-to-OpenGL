@@ -15,6 +15,7 @@ class Cube : public IRenderable
 	GLuint rectID;
 	GLuint screenWidthID;
 	GLuint screenHeightID;
+	GLuint mvpID;
 	GLuint statusID;
 
 	GLfloat x, y, w, h;
