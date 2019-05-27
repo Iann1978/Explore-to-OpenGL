@@ -31,7 +31,7 @@ void OnClick()
 	clickImage->SetTexture("images/volume.dds");
 }
 
-void CreateRenders(std::list<IRenderable*>& renders)
+void CreateUI(std::list<IRenderable*>& renders)
 {
 	Time::UpdateAtGameStart();
 	StatusBar* statusBar = new StatusBar();
@@ -89,26 +89,22 @@ void CreateRenders(std::list<IRenderable*>& renders)
 	renders.push_back(text);
 }
 
-int main(void)
+void DestroyUI(std::list<IRenderable*>& renders)
 {
-
-
-
-	Engine engine;
-
-
-	std::list<IRenderable *> renders;
-	CreateRenders(renders);
-
-	engine.Run(renders);
-	
-
-	for (std::list<IRenderable*>::iterator it = renders.begin(); it != renders.end();
+	for (std::list<IRenderable*>::iterator it = renders.begin();
+		it != renders.end();
 		it++)
 	{
 		delete (*it);
 	}
+}
 
+int main(void)
+{
+	Engine engine;
+	CreateUI(engine.uilist);
+	engine.Run();
+	DestroyUI(engine.uilist);
 	return 0;
 }
 

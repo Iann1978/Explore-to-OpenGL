@@ -75,8 +75,9 @@ Engine::~Engine()
 	glfwTerminate();
 }
 
-void Engine::Run(std::list<IRenderable*> renders)
+void Engine::Run()
 {
+	std::list<IRenderable*>& renders = uilist;
 	do {
 		Time::UpdateAtFrameStart();
 		Input::Update(window);
