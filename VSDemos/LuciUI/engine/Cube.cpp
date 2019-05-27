@@ -13,12 +13,7 @@
 
 Cube::Cube(const char* path, float x, float y, float w, float h)
 {
-
-	this->status = 0.7 * (rand() % 5) / 5;
-	this->x = x;
-	this->y = y;
-	this->w = w;
-	this->h = h;
+	
 	static const GLfloat g_vertex_buffer_data_Cube[] = {
 		-1.0f,-1.0f,-1.0f,
 		-1.0f,-1.0f, 1.0f,
@@ -106,10 +101,6 @@ Cube::Cube(const char* path, float x, float y, float w, float h)
 	//texture = loadDDS("1.dds");
 	program = LoadShaders("shaders/geo_vert.shader", "shaders/geo_frag.shader");
 	textureID = glGetUniformLocation(program, "myTextureSampler");
-	rectID = glGetUniformLocation(program, "rect");
-	screenWidthID = glGetUniformLocation(program, "screenWidth");
-	screenHeightID = glGetUniformLocation(program, "screenHeight");
-	statusID = glGetUniformLocation(program, "status");
 	mvpID = glGetUniformLocation(program, "mvp");
 
 	glGenBuffers(1, &vertexbuffer);
@@ -142,22 +133,9 @@ void Cube::SetTexture(const char* path)
 	texture = loadDDS(path);
 }
 
-bool Cube::RayCast(float x, float y)
-{
-	return  (x >= this->x && x <= (this->x + this->w) &&
-		y >= this->y && y <= (this->y + this->h));
-}
+
 void Cube::Render()
 {
-	if (RayCast(Input::mousePosX, Input::mousePosY))
-	{
-		status = 0.3f;
-	}
-	else
-	{
-		status = 0.0f;
-	}
-
 	glm::mat4 Projection = glm::perspective(glm::radians(45.0f), 1.0f * Screen::width / Screen::height, 0.1f, 100.0f);
 	// Camera matrix
 	glm::mat4 View = glm::lookAt(
@@ -180,11 +158,6 @@ void Cube::Render()
 	// Set our "myTextureSampler" sampler to use Texture Unit 0
 	glUniform1i(textureID, 0);
 
-	glUniform4fv(rectID, 1, &x);
-
-	glUniform1f(screenWidthID, Screen::width);
-	glUniform1f(screenHeightID, Screen::height);
-	glUniform1f(statusID, status);
 	glUniformMatrix4fv(mvpID, 1, GL_FALSE, &MVP[0][0]);
 
 	//glUniform4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
@@ -222,16 +195,4 @@ void Cube::Render()
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);
 
-}
-
-void Cube::Update()
-{
-	if (Input::GetMouseButtonUp(0) && RayCast(Input::mousePosX, Input::mousePosY))
-	{
-		//printf("click a Cube.\n");
-		if (onClick)
-		{
-			onClick();
-		}
-	}
 }
