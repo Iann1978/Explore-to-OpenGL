@@ -54,6 +54,9 @@
     <ClCompile Include="engine\Time.cpp">
       <Filter>engine</Filter>
     </ClCompile>
+    <ClCompile Include="engine\Engine.cpp">
+      <Filter>engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common\controls.hpp">
@@ -98,6 +101,9 @@
       <Filter>engine</Filter>
     </ClInclude>
     <ClInclude Include="engine\Randerable.h">
+      <Filter>engine</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\Engine.h">
       <Filter>engine</Filter>
     </ClInclude>
   </ItemGroup>
