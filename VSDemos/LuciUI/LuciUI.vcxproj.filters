@@ -100,10 +100,10 @@
     <ClInclude Include="engine\Time.h">
       <Filter>engine</Filter>
     </ClInclude>
-    <ClInclude Include="engine\Randerable.h">
+    <ClInclude Include="engine\Engine.h">
       <Filter>engine</Filter>
     </ClInclude>
-    <ClInclude Include="engine\Engine.h">
+    <ClInclude Include="engine\Renderable.h">
       <Filter>engine</Filter>
     </ClInclude>
   </ItemGroup>

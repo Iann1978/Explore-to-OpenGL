@@ -1,5 +1,5 @@
 #pragma once
-#include <Engine/Randerable.h>
+#include <Engine/Renderable.h>
 
 
 class Image : public IRenderable

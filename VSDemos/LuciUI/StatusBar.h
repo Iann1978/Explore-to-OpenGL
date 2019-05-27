@@ -1,5 +1,5 @@
 #pragma once
-#include <Engine/Randerable.h>
+#include <Engine/Renderable.h>
 #include <Engine/Text.h>
 #include <Engine/Image.h>
 class StatusBar : public IRenderable

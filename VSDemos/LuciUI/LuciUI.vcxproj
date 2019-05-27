@@ -202,7 +202,7 @@
     <ClInclude Include="engine\Engine.h" />
     <ClInclude Include="engine\Image.h" />
     <ClInclude Include="engine\Input.h" />
-    <ClInclude Include="engine\Randerable.h" />
+    <ClInclude Include="engine\Renderable.h" />
     <ClInclude Include="engine\Screen.h" />
     <ClInclude Include="engine\Text.h" />
     <ClInclude Include="engine\Time.h" />
