@@ -3,23 +3,26 @@
 #include "Engine/Time.h"
 #include "Engine/Screen.h"
 #include "Engine/Camera.h"
-
+#include <glm/gtc/quaternion.hpp>
 
 glm::mat4 Camera::projectionMatrix;
 glm::mat4 Camera::viewMatrix;
 
-glm::vec3 eye(0,0,3);
-glm::vec3 center(0,0,0);
+glm::vec3 eye(0,0,0);
+glm::vec3 center(0,-3,-2);
 glm::vec3 wantup(0,1,0);
+glm::vec3 front;
+glm::vec3 right;
+glm::vec3 up;
 
 void Camera::UpdateAtGameStart()
 {
-	glm::vec3 front = glm::normalize(center - eye);
-	glm::vec3 right = glm::cross(front, wantup);
-	glm::vec3 up = glm::cross(right, front);
+	front = glm::normalize(center - eye);
+	right = glm::cross(front, wantup);
+	up = glm::cross(right, front);
 	center = eye + front;
 
-	projectionMatrix = glm::perspective(glm::radians(45.0f), 1.0f * Screen::width / Screen::height, 0.1f, 100.0f);
+	projectionMatrix = glm::perspective(glm::radians(75.0f), 1.0f * Screen::width / Screen::height, 0.1f, 100.0f);
 	// Camera matrix
 	viewMatrix = glm::lookAt(eye, center, up);
 }
@@ -31,13 +34,10 @@ void Camera::UpdateAtFrameStart()
 	float moveSpeed = 1.f;	
 	float deitaDis = moveSpeed * deitaTime;
 
-	float rotateSpeed = 0.1f;
+	float rotateSpeed = 0.5f;
 	float deitaRot = rotateSpeed * deitaTime;
 
-	glm::vec3 front = glm::normalize(center - eye);
-	glm::vec3 right = glm::cross(front, wantup);
-	glm::vec3 up = glm::cross(right, front);
-	float dot = glm::dot(front, up);
+
 
 	if (Input::GetKey(Input::KeyA))
 	{	
@@ -57,19 +57,17 @@ void Camera::UpdateAtFrameStart()
 	}
 	else if (Input::GetKey(Input::KeyQ))
 	{
-		glm::mat4 rotationMat(1); // Creates a identity matrix
-		rotationMat = glm::rotate(rotationMat, deitaRot, up);
-		front = glm::vec3(rotationMat * glm::vec4(front, 1.0));
-		dot = glm::dot(front, up);
+		glm::quat q = glm::angleAxis(deitaRot, up);
+		front = q * front;
+		right = glm::cross(front, up);
 	}
 	else if (Input::GetKey(Input::KeyE))
 	{
-		glm::mat4 rotationMat(1); // Creates a identity matrix
-		rotationMat = glm::rotate(rotationMat, -deitaRot, up);
-		front = glm::vec3(rotationMat * glm::vec4(front, 1.0));		
-		dot = glm::dot(front, up);
+		glm::quat q = glm::angleAxis(-deitaRot, up);
+		front = q * front;
+		right = glm::cross(front, up);
+		printf("up:%3.2f,%3.2f,%3.2f\n", up.x, up.y, up.z);
 	}
-
 
 	center = eye + front;
 	viewMatrix = glm::lookAt(eye, center, up);
