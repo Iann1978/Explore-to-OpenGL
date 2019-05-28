@@ -17,7 +17,7 @@ bool Input::GetKey(KeyCode key)
 	return buttons[key];
 }
 
-void Input::Update(void* window)
+void Input::UpdateAtFrameStart(void* window)
 {
 	memcpy(lastFrameButtons, buttons, sizeof(buttons));
 

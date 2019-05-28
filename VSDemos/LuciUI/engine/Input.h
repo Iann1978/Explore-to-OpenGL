@@ -43,7 +43,8 @@ public:
 
 	static bool GetMouseButtonUp(KeyCode button);
 	static bool GetKey(KeyCode key);
-	static void Update(void* window);
-	
+
+
+	static void UpdateAtFrameStart(void* window);
 };
 
