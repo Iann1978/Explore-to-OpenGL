@@ -2,9 +2,8 @@
 // Created by Iann on 2019/5/29.
 //
 
-#ifndef OPENGLBYNDK_IRENDERABLE_H
-#define OPENGLBYNDK_IRENDERABLE_H
-
+#ifndef OPENGLBYNDK_RENDERABLE_H
+#define OPENGLBYNDK_RENDERABLE_H
 class  IRenderable
 {
 public:
@@ -12,5 +11,4 @@ public:
     virtual void Render() = 0;
     virtual ~IRenderable() { }
 };
-
-#endif //OPENGLBYNDK_IRENDERABLE_H
+#endif //OPENGLBYNDK_RENDERABLE_H

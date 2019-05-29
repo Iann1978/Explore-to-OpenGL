@@ -4,6 +4,7 @@
 
 #include "Engine.h"
 #include "Shader.h"
+#include "Image.h"
 #include <android/log.h>
 
 #include <jni.h>
@@ -84,6 +85,7 @@ void renderFrame() {
     glUseProgram(gProgram);
     checkGlError("glUseProgram");
 
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
     glVertexAttribPointer(gvPositionHandle, 2, GL_FLOAT, GL_FALSE, 0, gTriangleVertices);
     checkGlError("glVertexAttribPointer");
     glEnableVertexAttribArray(gvPositionHandle);
@@ -96,13 +98,15 @@ Engine::Engine()
 {
 
 }
-
+Image *image;
 void Engine::init(int w, int h)
 {
+    image = new Image("", 0,0,100,100);
     setupGraphics(w, h);
 }
 
 void Engine::RenderOneFrame()
 {
-    renderFrame();
+    image->Render();
+    //renderFrame();
 }
