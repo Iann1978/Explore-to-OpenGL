@@ -11,7 +11,9 @@
 #include <string>
 #include <jni.h>
 #include <android/log.h>
-
+#include "../glm/glm.hpp"
+#include "../glm/gtc/quaternion.hpp"
+#include "../glm/gtc/matrix_transform.hpp"
 
 void printGLString(const char *name, GLenum s) {
     const char *v = (const char *) glGetString(s);
@@ -101,6 +103,23 @@ Engine::Engine()
 Image *image;
 void Engine::init(int w, int h)
 {
+
+    glm::vec3 eye(0,0,0);
+    glm::vec3 center(0,-3,-2);
+    glm::vec3 wantup(0,1,0);
+    glm::vec3 front;
+    glm::vec3 right;
+    glm::vec3 up;
+
+    front = glm::normalize(center - eye);
+    right = glm::cross(front, wantup);
+    up = glm::cross(right, front);
+    center = eye + front;
+
+    glm::mat4 projectionMatrix = glm::perspective(glm::radians(75.0f), 1.0f * 4 / 3, 0.1f, 100.0f);
+    // Camera matrix
+    glm::mat4 viewMatrix = glm::lookAt(eye, center, up);
+
     image = new Image("", 0,0,100,100);
     setupGraphics(w, h);
 }
