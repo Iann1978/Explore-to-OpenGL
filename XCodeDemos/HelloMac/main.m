@@ -27,11 +27,19 @@ int main(int argc, const char * argv[]) {
         
         // Set an OpenGL view to a window.
         OpenGLView *view = [[OpenGLView alloc] initWithFrame:rc];
+        view->index = 0;
         [win setContentView:view];
         
         
         
-
+        // Create other window
+        NSWindow *win1 = [[NSWindow alloc] initWithContentRect:rc styleMask:uiStyle backing:backingStoreStyle defer:NO];
+        [win1 setTitle:@"win1"];
+        [win1 makeKeyAndOrderFront:win];
+        [win1 makeMainWindow];
+        view = [[OpenGLView alloc] initWithFrame:rc];
+        view->index = 1;
+        [win1 setContentView:view];
 
         // Set delegate to application
         AppDelegate *appDelegate = [[AppDelegate alloc] init];

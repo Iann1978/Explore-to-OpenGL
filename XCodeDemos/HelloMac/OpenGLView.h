@@ -11,7 +11,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface OpenGLView : NSView
-
+{
+    @public
+    int index;
+}
 @end
 
 NS_ASSUME_NONNULL_END

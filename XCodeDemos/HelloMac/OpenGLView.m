@@ -36,7 +36,8 @@
 - (void)drawRect:(NSRect)dirtyRect {
     [super drawRect:dirtyRect];
     
-    glClearColor(0.0f,1.0f,1.0f,1.0f);
+    
+    glClearColor(0.0f,1.0f*index,1.0f,1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
     
     glSwapAPPLE();
