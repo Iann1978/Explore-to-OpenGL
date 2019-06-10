@@ -14,6 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 {
     @public
     int index;
+    
+    @public
+    GLuint shaderId;
 }
 @end
 
