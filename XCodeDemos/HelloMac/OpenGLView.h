@@ -18,6 +18,10 @@ NS_ASSUME_NONNULL_BEGIN
     GLuint shaderId;
     GLuint vertexArrayId;
     GLuint vertexBufferId;
+    GLuint uvBufferId;
+    GLuint textureId;
+    GLuint mytexture;
+    
 }
 -(void)shutDown;
 @end
