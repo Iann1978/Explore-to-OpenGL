@@ -10,8 +10,9 @@
 #import <OpenGL/gl3.h>
 #import <OpenGL/gl3ext.h>
 #import "texture.hpp"
+#import <thread>
 
-
+using std::thread;
 
 
 
@@ -118,6 +119,16 @@ static GLuint CreateShader(const char *vertShaderSource, const char *fragShaderS
     return programId;
 }
 
+OpenGLView *openGLView;
+CGLContextObj context;
+void renderthreadfunc()
+{
+    CGLSetCurrentContext(context);
+    while(true)
+    {
+        [openGLView render];
+    }
+}
 
 @implementation OpenGLView
 
@@ -165,7 +176,11 @@ static GLuint CreateShader(const char *vertShaderSource, const char *fragShaderS
     glBufferData(GL_ARRAY_BUFFER, sizeof(uvBufferData), uvBufferData, GL_STATIC_DRAW);
     
 
-    textureId =  loadDDS("/Users/iann/Pictures/uvtemplate.DDS");
+    textureId =  loadDDS("/Users/iann/Documents/uvtemplate.DDS");
+    
+    context = glContext.CGLContextObj;
+    openGLView = self;
+    thread *th = new thread(renderthreadfunc);
 
     return self;
 }
@@ -177,12 +192,9 @@ static GLuint CreateShader(const char *vertShaderSource, const char *fragShaderS
     glDeleteVertexArrays(1, &vertexArrayId);
     glDeleteProgram(shaderId);
 }
-
-- (void)drawRect:(NSRect)dirtyRect {
-    [super drawRect:dirtyRect];
+- (void)render {
+    NSLog(@"OpenGLView.render:\n");
     
-    NSLog(@"OpenGLView.drawRect:\n");
-
     static float timer = 0;
     float offsetvalue = 0.2f*sin(timer+=0.02f);
     
@@ -195,7 +207,7 @@ static GLuint CreateShader(const char *vertShaderSource, const char *fragShaderS
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE0, textureId);
     glUniform1i(mytexture, 0);
-     
+    
     
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, vertexArrayId);
@@ -209,6 +221,11 @@ static GLuint CreateShader(const char *vertShaderSource, const char *fragShaderS
     glDrawArrays(GL_TRIANGLES, 0, 3);
     
     glSwapAPPLE();
+    
+}
+- (void)drawRect:(NSRect)dirtyRect {
+    [super drawRect:dirtyRect];
+    
     //glClearColor(0.0f,1.0f*index,1.0f,1.0f);
     //glClear(GL_COLOR_BUFFER_BIT);
     
