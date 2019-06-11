@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AppDelegate : NSObject
 
+- (BOOL) windowShouldClose:(id)window;
+
 @end
 
 NS_ASSUME_NONNULL_END

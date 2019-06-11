@@ -15,9 +15,11 @@ NS_ASSUME_NONNULL_BEGIN
     @public
     int index;
     
-    @public
     GLuint shaderId;
+    GLuint vertexArrayId;
+    GLuint vertexBufferId;
 }
+-(void)shutDown;
 @end
 
 NS_ASSUME_NONNULL_END

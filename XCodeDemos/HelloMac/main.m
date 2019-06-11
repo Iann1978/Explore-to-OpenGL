@@ -25,6 +25,7 @@ int main(int argc, const char * argv[]) {
         [win makeKeyAndOrderFront:win];
         [win makeMainWindow];
         
+        
         // Set an OpenGL view to a window.
         OpenGLView *view = [[OpenGLView alloc] initWithFrame:rc];
         view->index = 0;
@@ -44,6 +45,7 @@ int main(int argc, const char * argv[]) {
         // Set delegate to application
         AppDelegate *appDelegate = [[AppDelegate alloc] init];
         [app setDelegate:appDelegate];
+        [win setDelegate:appDelegate];
         
         
         

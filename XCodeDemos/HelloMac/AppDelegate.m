@@ -8,16 +8,24 @@
 
 #import "AppDelegate.h"
 #import <Cocoa/Cocoa.h>
+#import "OpenGLView.h"
 
 @implementation AppDelegate
 
 - (BOOL) applicationShouldTerminateAfterLastWindowClosed:(NSApplication *) theApplication
 {
+    NSLog(@"AppDelegate.applicationShouldTerminateAfterLastWindowClosed\n");
     return YES;
 }
 
 - (BOOL) windowShouldClose:(id)window
 {
+    NSLog(@"windowShouldClose\n");
+    OpenGLView *view = [window contentView];
+    if (view)
+    {
+        [view shutDown];
+    }
     return YES;
 }
 

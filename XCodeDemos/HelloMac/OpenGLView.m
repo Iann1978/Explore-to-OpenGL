@@ -134,11 +134,11 @@ static GLuint CreateShader(const char *vertShaderSource, const char *fragShaderS
     
     shaderId = CreateShader(vertexSource, fragmentSource);
     
-    GLuint vertexArrayId;
+    
     glGenVertexArrays(1, &vertexArrayId);
     glBindVertexArray(vertexArrayId);
     
-    GLuint vertexBufferId;
+    
     glGenBuffers(1, &vertexArrayId);
     glBindBuffer(GL_ARRAY_BUFFER, vertexArrayId);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertexBufferData), vertexBufferData, GL_STATIC_DRAW);
@@ -156,10 +156,15 @@ static GLuint CreateShader(const char *vertShaderSource, const char *fragShaderS
     
     glSwapAPPLE();
     
+
+    return self;
+}
+
+- (void)shutDown {
+    NSLog(@"shutDown:\n");
     glDeleteBuffers(1, &vertexBufferId);
     glDeleteVertexArrays(1, &vertexArrayId);
     glDeleteProgram(shaderId);
-    return self;
 }
 
 - (void)drawRect:(NSRect)dirtyRect {
