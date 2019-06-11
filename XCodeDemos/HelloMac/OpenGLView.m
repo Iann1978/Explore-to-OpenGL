@@ -20,9 +20,11 @@ R"SHADER(
 #version 330 core
 layout(location = 0) in vec3 vertexPosition_modelspace;
 layout(location = 1) in vec2 texcoord;
+uniform float offset;
 out vec2 uv;
 void main(){
     gl_Position.xyz = vertexPosition_modelspace;
+    gl_Position.x += offset;
     gl_Position.w = 1.0;
     uv = texcoord;
 }
@@ -51,7 +53,7 @@ static const GLfloat vertexBufferData[] = {
 static const GLfloat uvBufferData[] = {
     0.0f, 0.0f,
     1.0f, 0.0f,
-    0.0f,  1.0f, 
+    0.0f,  1.0f,
 };
 
 static GLuint CreateShader(const char *vertShaderSource, const char *fragShaderSource)
@@ -145,6 +147,7 @@ static GLuint CreateShader(const char *vertShaderSource, const char *fragShaderS
     
     shaderId = CreateShader(vertexSource, fragmentSource);
     mytexture = glGetUniformLocation(shaderId, "mytexture");
+    offset = glGetUniformLocation(shaderId, "offset");
     
     
     // Generate vertex array
@@ -178,10 +181,16 @@ static GLuint CreateShader(const char *vertShaderSource, const char *fragShaderS
 - (void)drawRect:(NSRect)dirtyRect {
     [super drawRect:dirtyRect];
     
+    NSLog(@"OpenGLView.drawRect:\n");
+
+    static float timer = 0;
+    float offsetvalue = 0.2f*sin(timer+=0.02f);
+    
     glClearColor(0.0f,1.0f*index,1.0f,1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
     
     glUseProgram(shaderId);
+    glUniform1f(offset, offsetvalue);
     
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE0, textureId);
@@ -212,6 +221,7 @@ static GLuint CreateShader(const char *vertShaderSource, const char *fragShaderS
 
 - (void)mouseDown:(NSEvent *) theEvent {
     NSLog(@"OpenGLView.mouseDown");
+    [self drawRect:NSMakeRect(0,0,100,100)];
 }
 
 @end

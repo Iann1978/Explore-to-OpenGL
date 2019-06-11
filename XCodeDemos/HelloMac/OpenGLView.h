@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
     GLuint uvBufferId;
     GLuint textureId;
     GLuint mytexture;
+    GLuint offset;
     
 }
 -(void)shutDown;
