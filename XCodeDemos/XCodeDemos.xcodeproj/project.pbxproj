@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA2362DF22B0DA4100D529AF /* shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA2362DD22B0DA4100D529AF /* shader.cpp */; };
 		BA25A4F722AF4C3A005A1C2B /* texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA25A4F522AF4C3A005A1C2B /* texture.cpp */; };
 		BA775B172260399C00F0EB77 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA775B162260399C00F0EB77 /* AppDelegate.m */; };
 		BA775B1A2260408700F0EB77 /* OpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA775B192260408700F0EB77 /* OpenGLView.m */; };
@@ -27,6 +28,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BA2362DD22B0DA4100D529AF /* shader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = shader.cpp; sourceTree = "<group>"; };
+		BA2362DE22B0DA4100D529AF /* shader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = shader.hpp; sourceTree = "<group>"; };
 		BA25A4F522AF4C3A005A1C2B /* texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = texture.cpp; sourceTree = "<group>"; };
 		BA25A4F622AF4C3A005A1C2B /* texture.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = texture.hpp; sourceTree = "<group>"; };
 		BA775B152260399C00F0EB77 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -77,6 +80,8 @@
 				BA775B162260399C00F0EB77 /* AppDelegate.m */,
 				BA775B182260408700F0EB77 /* OpenGLView.h */,
 				BA775B192260408700F0EB77 /* OpenGLView.m */,
+				BA2362DD22B0DA4100D529AF /* shader.cpp */,
+				BA2362DE22B0DA4100D529AF /* shader.hpp */,
 			);
 			path = HelloMac;
 			sourceTree = "<group>";
@@ -145,6 +150,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA2362DF22B0DA4100D529AF /* shader.cpp in Sources */,
 				BA775B172260399C00F0EB77 /* AppDelegate.m in Sources */,
 				BA25A4F722AF4C3A005A1C2B /* texture.cpp in Sources */,
 				BA775B1A2260408700F0EB77 /* OpenGLView.m in Sources */,
