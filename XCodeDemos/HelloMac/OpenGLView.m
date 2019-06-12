@@ -11,8 +11,10 @@
 #import <OpenGL/gl3ext.h>
 #import "texture.hpp"
 #import <thread>
+#include <functional>
 
 using std::thread;
+using std::function;
 
 
 
@@ -119,16 +121,8 @@ static GLuint CreateShader(const char *vertShaderSource, const char *fragShaderS
     return programId;
 }
 
-OpenGLView *openGLView;
-CGLContextObj context;
-void renderthreadfunc()
-{
-    CGLSetCurrentContext(context);
-    while(true)
-    {
-        [openGLView render];
-    }
-}
+
+
 
 @implementation OpenGLView
 
@@ -177,12 +171,20 @@ void renderthreadfunc()
     
 
     textureId =  loadDDS("/Users/iann/Documents/uvtemplate.DDS");
-    
     context = glContext.CGLContextObj;
-    openGLView = self;
-    thread *th = new thread(renderthreadfunc);
+    
+    auto func = [self]()->void{ [self renderThreadFunc]; };
+    thread *th = new thread(func);
 
     return self;
+}
+
+-(void)renderThreadFunc {
+    CGLSetCurrentContext(context);
+    while(true)
+    {
+        [self render];
+    }
 }
 
 - (void)shutDown {
@@ -192,6 +194,7 @@ void renderthreadfunc()
     glDeleteVertexArrays(1, &vertexArrayId);
     glDeleteProgram(shaderId);
 }
+
 - (void)render {
     NSLog(@"OpenGLView.render:\n");
     

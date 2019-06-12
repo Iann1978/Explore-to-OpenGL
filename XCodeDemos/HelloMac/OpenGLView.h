@@ -22,10 +22,12 @@ NS_ASSUME_NONNULL_BEGIN
     GLuint textureId;
     GLuint mytexture;
     GLuint offset;
+    CGLContextObj context;
     
 }
 -(void)shutDown;
 -(void)render;
+-(void)renderThreadFunc;
 @end
 
 NS_ASSUME_NONNULL_END
