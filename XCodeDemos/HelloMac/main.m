@@ -34,13 +34,13 @@ int main(int argc, const char * argv[]) {
         
         
         // Create other window
-//        NSWindow *win1 = [[NSWindow alloc] initWithContentRect:rc styleMask:uiStyle backing:backingStoreStyle defer:NO];
-//        [win1 setTitle:@"win1"];
-//        [win1 makeKeyAndOrderFront:win];
-//        [win1 makeMainWindow];
-//        view = [[OpenGLView alloc] initWithFrame:rc];
-//        view->index = 1;
-//        [win1 setContentView:view];
+        NSWindow *win1 = [[NSWindow alloc] initWithContentRect:rc styleMask:uiStyle backing:backingStoreStyle defer:NO];
+        [win1 setTitle:@"win1"];
+        [win1 makeKeyAndOrderFront:win];
+        [win1 makeMainWindow];
+        view = [[OpenGLView alloc] initWithFrame:rc];
+        view->index = 1;
+        [win1 setContentView:view];
 
         // Set delegate to application
         AppDelegate *appDelegate = [[AppDelegate alloc] init];
