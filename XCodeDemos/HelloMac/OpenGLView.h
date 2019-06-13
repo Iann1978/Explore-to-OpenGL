@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 {
     @public
     int index;
-    
+    float timer;
     GLuint shaderId;
     GLuint vertexArrayId;
     GLuint vertexBufferId;

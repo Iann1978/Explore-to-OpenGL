@@ -109,6 +109,7 @@ static const GLfloat uvBufferData[] = {
 
     textureId =  loadDDS("/Users/iann/Documents/uvtemplate.DDS");
     context = glContext.CGLContextObj;
+    timer = 0;
     
     auto func = [self]()->void{ [self renderThreadFunc]; };
     thread *th = new thread(func);
@@ -126,6 +127,7 @@ static const GLfloat uvBufferData[] = {
 
 - (void)shutDown {
     NSLog(@"shutDown:\n");
+    CGLSetCurrentContext(context);
     glDeleteBuffers(1, &vertexBufferId);
     glDeleteBuffers(1, &uvBufferId);
     glDeleteVertexArrays(1, &vertexArrayId);
@@ -133,9 +135,9 @@ static const GLfloat uvBufferData[] = {
 }
 
 - (void)render {
-    NSLog(@"OpenGLView.render:\n");
+    //NSLog(@"OpenGLView.render:\n");
     
-    static float timer = 0;
+    //static float timer = 0;
     float offsetvalue = 0.2f*sin(timer+=0.02f);
     
     glClearColor(0.0f,1.0f*index,1.0f,1.0f);

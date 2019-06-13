@@ -15,37 +15,39 @@ int main(int argc, const char * argv[]) {
         // insert code here...
         NSLog(@"Hello, Mac!");
         
-        // Create the main window
+        
         NSApplication *app = [NSApplication sharedApplication];
         NSRect rc = NSMakeRect(0, 0, 800, 600);
         NSInteger uiStyle = NSWindowStyleMaskTitled | NSWindowStyleMaskResizable | NSWindowStyleMaskClosable;
         NSBackingStoreType backingStoreStyle = NSBackingStoreBuffered;
-        NSWindow *win = [[NSWindow alloc] initWithContentRect:rc styleMask:uiStyle backing:backingStoreStyle defer:NO];
-        [win setTitle:@"Hello Mac"];
-        [win makeKeyAndOrderFront:win];
-        [win makeMainWindow];
-        
-        
-        // Set an OpenGL view to a window.
-        OpenGLView *view = [[OpenGLView alloc] initWithFrame:rc];
-        view->index = 0;
-        [win setContentView:view];
-        
         
         
         // Create other window
         NSWindow *win1 = [[NSWindow alloc] initWithContentRect:rc styleMask:uiStyle backing:backingStoreStyle defer:NO];
         [win1 setTitle:@"win1"];
-        [win1 makeKeyAndOrderFront:win];
+        [win1 makeKeyAndOrderFront:win1];
         [win1 makeMainWindow];
-        view = [[OpenGLView alloc] initWithFrame:rc];
-        view->index = 1;
-        [win1 setContentView:view];
+        OpenGLView *view1 = [[OpenGLView alloc] initWithFrame:rc];
+        view1->index = 1;
+        [win1 setContentView:view1];
+        
+        // Create the main window
+        NSWindow *win0 = [[NSWindow alloc] initWithContentRect:rc styleMask:uiStyle backing:backingStoreStyle defer:NO];
+        [win0 setTitle:@"win0"];
+        [win0 makeKeyAndOrderFront:win0];
+        [win0 makeMainWindow];
+        OpenGLView *view0 = [[OpenGLView alloc] initWithFrame:rc];
+        view0->index = 0;
+        [win0 setContentView:view0];
+        
+        
+        
 
         // Set delegate to application
         AppDelegate *appDelegate = [[AppDelegate alloc] init];
         [app setDelegate:appDelegate];
-        [win setDelegate:appDelegate];
+        [win0 setDelegate:appDelegate];
+        [win1 setDelegate:appDelegate];
         
         
         
