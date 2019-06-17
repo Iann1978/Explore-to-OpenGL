@@ -38,10 +38,10 @@ R"SHADER(
 #version 330 core
 in vec2 uv;
 out vec3 color;
-uniform sampler2D mytexture;
+uniform sampler2DRect mytexture;
 void main()
 {
-    color = texture(mytexture, uv).rgb;
+    color = texture(mytexture, uv*256).rgb;
 }
 )SHADER";
 
@@ -81,8 +81,8 @@ static GLuint CreateTextureThroughIOSurface(NSSize size, CGLContextObj context, 
     glActiveTexture(GL_TEXTURE0);
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_RECTANGLE_EXT, texture);
-    CGLTexImageIOSurface2D(context, GL_TEXTURE_RECTANGLE_EXT, GL_RGB, width, height,
-                            GL_RGBA, GL_UNSIGNED_INT_8_8_8_8_REV, surf, 0);
+    CGLTexImageIOSurface2D(context, GL_TEXTURE_RECTANGLE_EXT, GL_RGBA, width, height,
+                            GL_BGRA, GL_UNSIGNED_INT_8_8_8_8_REV, surf, 0);
     glTexParameteri(GL_TEXTURE_RECTANGLE_EXT, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_RECTANGLE_EXT, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     return texture;
@@ -148,7 +148,7 @@ static GLuint CreateTextureThroughIOSurface(NSSize size, CGLContextObj context, 
 
 - (void) LoadResource
 {
-    CGLSetCurrentContext(context2);
+    CGLSetCurrentContext(context1);
     
     static const GLfloat vertexBufferData[] = {
         -1.0f, -1.0f, 0.0f,
@@ -182,8 +182,8 @@ static GLuint CreateTextureThroughIOSurface(NSSize size, CGLContextObj context, 
     glBufferData(GL_ARRAY_BUFFER, sizeof(uvBufferData), uvBufferData, GL_STATIC_DRAW);
     
     
-    textureId =  loadDDS("/Users/iann/Documents/uvtemplate.DDS");
-    //textureId = CreateTextureThroughIOSurface(NSMakeSize(256, 256), context1, nil);
+    //textureId =  loadDDS("/Users/iann/Documents/uvtemplate.DDS");
+    textureId = CreateTextureThroughIOSurface(NSMakeSize(256, 256), context1, nil);
     int a = 0;
     int b = 0;
     
@@ -203,8 +203,8 @@ static GLuint CreateTextureThroughIOSurface(NSSize size, CGLContextObj context, 
     glUniform1f(offset, offsetvalue);
     
     glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE0, textureId);
-    //glBindTexture(GL_TEXTURE_RECTANGLE_EXT, textureId);
+    //glBindTexture(GL_TEXTURE0, textureId);
+    glBindTexture(GL_TEXTURE_RECTANGLE_EXT, textureId);
     glUniform1i(mytexture, 0);
     
     
@@ -218,6 +218,7 @@ static GLuint CreateTextureThroughIOSurface(NSSize size, CGLContextObj context, 
     
     
     glDrawArrays(GL_TRIANGLES, 0, 3);
+    
     
     glSwapAPPLE();
     

@@ -28,7 +28,7 @@ int main(int argc, const char * argv[]) {
         
         Render *render = [Render alloc];
         NSOpenGLContext *nsglContext = [render CreateContext1];
-        NSOpenGLContext *nsglContext2 = [render CreateContext2];
+        //NSOpenGLContext *nsglContext2 = [render CreateContext2];
         [render LoadResource];
         
         
@@ -38,11 +38,12 @@ int main(int argc, const char * argv[]) {
         [win0 setTitle:@"win0"];
         [win0 makeKeyAndOrderFront:win0];
         [win0 makeMainWindow];
-        OpenGLView *view0 = [[OpenGLView alloc] initWithFrame:rc withRender:render withContext:nsglContext2];
+        OpenGLView *view0 = [[OpenGLView alloc] initWithFrame:rc withRender:render withContext:nsglContext];
         view0->index = 0;
         [win0 setContentView:view0];
         [win0 setDelegate:appDelegate];
-        
+        appDelegate->view = view0;
+        //[view0 startRender];
         
         
 

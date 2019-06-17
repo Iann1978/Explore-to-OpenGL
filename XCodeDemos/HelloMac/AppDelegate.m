@@ -11,6 +11,11 @@
 #import "OpenGLView.h"
 
 @implementation AppDelegate
+- (void)applicationDidFinishLaunching:(NSNotification *)notification {
+    NSLog(@"applicationDidFinishLaunching");
+    [view startRender];
+    //[self createDestView:0];
+}
 
 - (BOOL) applicationShouldTerminateAfterLastWindowClosed:(NSApplication *) theApplication
 {

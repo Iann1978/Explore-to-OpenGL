@@ -120,6 +120,12 @@ static const GLfloat uvBufferData[] = {
 //    context = glContext.CGLContextObj;
 //    timer = 0;
 //
+    
+
+    return self;
+}
+-(void)startRender
+{
     auto func = [self]()->void{
         CGLSetCurrentContext(self->context);
         Render *render = self->render;
@@ -130,10 +136,7 @@ static const GLfloat uvBufferData[] = {
         
     };
     thread *th = new thread(func);
-
-    return self;
 }
-
 -(void)renderThreadFunc {
     //CGLSetCurrentContext(context);
     while(true)

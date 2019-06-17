@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) LoadResource;
 - (void) RenderTriangle;
 - (void) ReleaseResource;
-- (IOSurfaceRef) CreagteSurface;
+
 
 @end
 

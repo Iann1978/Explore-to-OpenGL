@@ -28,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 - (instancetype)initWithFrame:(NSRect)frameRect withRender:(Render *) render withContext:(NSOpenGLContext *) nsglContext;
 
+-(void)startRender;
 -(void)shutDown;
 
 -(void)renderThreadFunc;
