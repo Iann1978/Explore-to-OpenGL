@@ -15,7 +15,6 @@
     NSLog(@"applicationDidFinishLaunching");
     [view0 startRender];
     [view1 startRender];
-    //[self createDestView:0];
 }
 
 - (BOOL) applicationShouldTerminateAfterLastWindowClosed:(NSApplication *) theApplication
