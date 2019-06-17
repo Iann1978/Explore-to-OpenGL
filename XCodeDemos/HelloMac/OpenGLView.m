@@ -7,7 +7,7 @@
 //
 #define GL_SILENCE_DEPRECATION
 #import "OpenGLView.h"
-#import <OpenGL/gl.h>
+
 #import <OpenGL/gl3.h>
 #import <OpenGL/gl3ext.h>
 #import "texture.hpp"
@@ -139,11 +139,11 @@ void main()
     GLuint texture = 0;
     glActiveTexture(GL_TEXTURE0);
     glGenTextures(1, &texture);
-    glBindTexture(GL_TEXTURE_RECTANGLE_EXT, texture);
-    CGLTexImageIOSurface2D(context, GL_TEXTURE_RECTANGLE_EXT, GL_RGBA, 256, 256,
+    glBindTexture(GL_TEXTURE_RECTANGLE, texture);
+    CGLTexImageIOSurface2D(context, GL_TEXTURE_RECTANGLE, GL_RGBA, 256, 256,
                            GL_BGRA, GL_UNSIGNED_INT_8_8_8_8_REV, surf, 0);
-    glTexParameteri(GL_TEXTURE_RECTANGLE_EXT, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_RECTANGLE_EXT, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_RECTANGLE, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_RECTANGLE, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     return texture;
 }
 - (NSOpenGLContext *) CreateContext: (NSOpenGLContext *) context
@@ -224,7 +224,7 @@ void main()
     
     glActiveTexture(GL_TEXTURE0);
     //glBindTexture(GL_TEXTURE0, textureId);
-    glBindTexture(GL_TEXTURE_RECTANGLE_EXT, textureId);
+    glBindTexture(GL_TEXTURE_RECTANGLE, textureId);
     glUniform1i(mytexture, 0);
     
     
