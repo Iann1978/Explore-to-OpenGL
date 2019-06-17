@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
     GLuint uvBufferId;
     GLuint mytexture;
     GLuint offset;
+    GLuint framebuffer;
+    GLuint rendertexture;
 
     
     CGLContextObj context;
@@ -37,6 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) LoadResource;
 - (void) RenderTriangle;
 - (void) ReleaseResource;
+- (void) SetTargetSurface: (IOSurfaceRef) surf;
 
 
 @end

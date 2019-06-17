@@ -159,6 +159,7 @@ void main()
     
  
  
+    glBindFramebuffer(GL_RENDERBUFFER, rendertexture);
     float offsetvalue = 0.2f*sin(timer+=0.02f);
     
     glClearColor(0.0f,1.0f*index,1.0f,1.0f);
@@ -195,5 +196,23 @@ void main()
     glDeleteBuffers(1, &uvBufferId);
     glDeleteVertexArrays(1, &vertexArrayId);
     glDeleteProgram(shaderId);
+}
+
+- (void) SetTargetSurface: (IOSurfaceRef) surf
+{
+    glGenFramebuffers(1, &framebuffer);
+    glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
+    
+    
+    
+    glGenTextures(1, &rendertexture);
+    glBindTexture(GL_TEXTURE_RECTANGLE_EXT, rendertexture);
+    CGLTexImageIOSurface2D(context, GL_TEXTURE_RECTANGLE_EXT, GL_RGBA, 256, 256,
+                           GL_BGRA, GL_UNSIGNED_INT_8_8_8_8_REV, surf, 0);
+    glTexParameteri(GL_TEXTURE_RECTANGLE_EXT, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_RECTANGLE_EXT, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    
+    glFramebufferTexture(GL_RENDERBUFFER, GL_COLOR_ATTACHMENT0, rendertexture, 0);
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 @end

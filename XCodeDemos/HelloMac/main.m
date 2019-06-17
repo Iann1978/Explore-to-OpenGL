@@ -48,22 +48,22 @@ int main(int argc, const char * argv[]) {
         
         
 
-        Render *render1 = [Render alloc];
-        NSOpenGLContext *nsglContext1 = [render1 CreateContext:render0->nsglContext];
-        [render1 LoadResource];
-        render1->surf = render0->surf;
-        render1->textureId = [render1 CreateTextureThroughSurf:render1->surf];
-        
-        // Create other window
-        NSWindow *win1 = [[NSWindow alloc] initWithContentRect:rc styleMask:uiStyle backing:backingStoreStyle defer:NO];
-        [win1 setTitle:@"win1"];
-        [win1 makeKeyAndOrderFront:win1];
-        [win1 makeMainWindow];
-        OpenGLView *view1 = [[OpenGLView alloc] initWithFrame:rc withRender:render1 withContext:nsglContext1];
-        view1->index = 1;
-        [win1 setContentView:view1];
-        [win1 setDelegate:appDelegate];
-        appDelegate->view1 = view1;
+//        Render *render1 = [Render alloc];
+//        NSOpenGLContext *nsglContext1 = [render1 CreateContext:render0->nsglContext];
+//        [render1 LoadResource];
+//        render1->surf = render0->surf;
+//        render1->textureId = [render1 CreateTextureThroughSurf:render1->surf];
+//        
+//        // Create other window
+//        NSWindow *win1 = [[NSWindow alloc] initWithContentRect:rc styleMask:uiStyle backing:backingStoreStyle defer:NO];
+//        [win1 setTitle:@"win1"];
+//        [win1 makeKeyAndOrderFront:win1];
+//        [win1 makeMainWindow];
+//        OpenGLView *view1 = [[OpenGLView alloc] initWithFrame:rc withRender:render1 withContext:nsglContext1];
+//        view1->index = 1;
+//        [win1 setContentView:view1];
+//        [win1 setDelegate:appDelegate];
+//        appDelegate->view1 = view1;
         
         
         

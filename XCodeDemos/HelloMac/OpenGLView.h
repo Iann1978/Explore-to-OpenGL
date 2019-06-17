@@ -16,8 +16,27 @@ NS_ASSUME_NONNULL_BEGIN
     @public
     int index;
 
+    //CGLContextObj context;
+    //Render *render;
+    
+    
+
+    float timer;
+    GLuint shaderId;
+    GLuint vertexArrayId;
+    GLuint vertexBufferId;
+    GLuint uvBufferId;
+    GLuint mytexture;
+    GLuint offset;
+    
+    
     CGLContextObj context;
-    Render *render;
+    NSOpenGLContext *nsglContext;
+    
+    @public
+    IOSurfaceRef surf;
+    @public
+    GLuint textureId;
 }
 - (instancetype)initWithFrame:(NSRect)frameRect withRender:(Render *) render withContext:(NSOpenGLContext *) nsglContext;
 

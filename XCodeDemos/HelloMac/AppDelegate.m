@@ -14,7 +14,6 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
     NSLog(@"applicationDidFinishLaunching");
     [view0 startRender];
-    [view1 startRender];
 }
 
 - (BOOL) applicationShouldTerminateAfterLastWindowClosed:(NSApplication *) theApplication
