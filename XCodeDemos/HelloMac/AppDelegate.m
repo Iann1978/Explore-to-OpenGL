@@ -13,7 +13,8 @@
 @implementation AppDelegate
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
     NSLog(@"applicationDidFinishLaunching");
-    [view startRender];
+    [view0 startRender];
+    [view1 startRender];
     //[self createDestView:0];
 }
 

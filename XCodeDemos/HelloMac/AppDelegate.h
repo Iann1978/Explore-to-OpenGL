@@ -14,7 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface AppDelegate : NSObject
 {
 @public
-    OpenGLView *view;
+    OpenGLView *view0;
+    OpenGLView *view1;
 }
 
 - (BOOL) windowShouldClose:(id)window;

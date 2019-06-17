@@ -44,11 +44,11 @@ void main()
     color = texture(mytexture, uv*256).rgb;
 }
 )SHADER";
-
-static GLuint CreateTextureThroughIOSurface(NSSize size, CGLContextObj context, void (^drawCallback)(CGContextRef ctx))
+@implementation Render
+- (IOSurfaceRef) CreateSurf
 {
-    int width = size.width;
-    int height = size.height;
+    int width = 256;
+    int height = 256;
     
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
                           [NSNumber numberWithInt:width], kIOSurfaceWidth,
@@ -61,7 +61,7 @@ static GLuint CreateTextureThroughIOSurface(NSSize size, CGLContextObj context, 
     size_t stride = IOSurfaceGetBytesPerRow(surf);
     CGColorSpaceRef rgb = CGColorSpaceCreateDeviceRGB();
     CGContextRef ctx = CGBitmapContextCreate(data, width, height, 8, stride,
-                                                rgb, kCGImageAlphaPremultipliedFirst | kCGBitmapByteOrder32Host);
+                                             rgb, kCGImageAlphaPremultipliedFirst | kCGBitmapByteOrder32Host);
     CGColorSpaceRelease(rgb);
     CGContextSetRGBFillColor(ctx, 1,1,1,1);
     CGContextFillRect(ctx, CGRectMake(0,0,200,200));
@@ -76,20 +76,22 @@ static GLuint CreateTextureThroughIOSurface(NSSize size, CGLContextObj context, 
                                                    circleRadius*2, circleRadius * 2));
     }
     IOSurfaceUnlock(surf, 0, NULL);
-    
+    return surf;
+}
+
+- (GLuint) CreateTextureThroughSurf: (IOSurfaceRef) surf
+{
     GLuint texture = 0;
     glActiveTexture(GL_TEXTURE0);
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_RECTANGLE_EXT, texture);
-    CGLTexImageIOSurface2D(context, GL_TEXTURE_RECTANGLE_EXT, GL_RGBA, width, height,
-                            GL_BGRA, GL_UNSIGNED_INT_8_8_8_8_REV, surf, 0);
+    CGLTexImageIOSurface2D(context, GL_TEXTURE_RECTANGLE_EXT, GL_RGBA, 256, 256,
+                           GL_BGRA, GL_UNSIGNED_INT_8_8_8_8_REV, surf, 0);
     glTexParameteri(GL_TEXTURE_RECTANGLE_EXT, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_RECTANGLE_EXT, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     return texture;
 }
-
-@implementation Render
-- (NSOpenGLContext *) CreateContext1
+- (NSOpenGLContext *) CreateContext: (NSOpenGLContext *) context
 {
     NSOpenGLPixelFormatAttribute glAttributes[] =
     {
@@ -104,51 +106,17 @@ static GLuint CreateTextureThroughIOSurface(NSSize size, CGLContextObj context, 
     };
     
     NSOpenGLPixelFormat *format = [[NSOpenGLPixelFormat alloc] initWithAttributes:glAttributes];
-    nsglContext1 = [[NSOpenGLContext alloc] initWithFormat:format shareContext:nil];
-    context1 = nsglContext1.CGLContextObj;
+    nsglContext = [[NSOpenGLContext alloc] initWithFormat:format shareContext:context];
+    self->context = nsglContext.CGLContextObj;
     
-    surf = [self CreagteSurface];
+   
     
     //CreateTextureThroughIOSurface(NSMakeSize(256, 256), context1, nil);
-    return nsglContext1;
+    return nsglContext;
 }
-- (IOSurfaceRef) CreagteSurface
-{
-    int width = 256;
-    int height = 256;
-    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
-                          [NSNumber numberWithInt:width], kIOSurfaceWidth,
-                          [NSNumber numberWithInt:height], kIOSurfaceHeight,
-                          [NSNumber numberWithInt:4], kIOSurfaceBytesPerElement,
-                          nil];
-    IOSurfaceRef surf = IOSurfaceCreate((CFDictionaryRef)dict);
-    return surf;
-}
-
-                                         
-- (NSOpenGLContext *) CreateContext2
-{
-    NSOpenGLPixelFormatAttribute glAttributes[] =
-    {
-        NSOpenGLPFAColorSize, 24,
-        NSOpenGLPFAColorFloat,
-        NSOpenGLPFAAlphaSize, 8,
-        NSOpenGLPFADoubleBuffer,
-        //NSOpenGLPFAAccelerated,
-        NSOpenGLPFAMultisample,
-        NSOpenGLPFAOpenGLProfile, NSOpenGLProfileVersion3_2Core,
-        0
-    };
-    
-    NSOpenGLPixelFormat *format = [[NSOpenGLPixelFormat alloc] initWithAttributes:glAttributes];
-    NSOpenGLContext *glContext = [[NSOpenGLContext alloc] initWithFormat:format shareContext:nsglContext1];
-    context2 = glContext.CGLContextObj;
-     return glContext;
-}
-
 - (void) LoadResource
 {
-    CGLSetCurrentContext(context1);
+    CGLSetCurrentContext(context);
     
     static const GLfloat vertexBufferData[] = {
         -1.0f, -1.0f, 0.0f,
@@ -182,10 +150,7 @@ static GLuint CreateTextureThroughIOSurface(NSSize size, CGLContextObj context, 
     glBufferData(GL_ARRAY_BUFFER, sizeof(uvBufferData), uvBufferData, GL_STATIC_DRAW);
     
     
-    //textureId =  loadDDS("/Users/iann/Documents/uvtemplate.DDS");
-    textureId = CreateTextureThroughIOSurface(NSMakeSize(256, 256), context1, nil);
-    int a = 0;
-    int b = 0;
+
     
 }
 
@@ -225,7 +190,7 @@ static GLuint CreateTextureThroughIOSurface(NSSize size, CGLContextObj context, 
 }
 
 - (void) ReleaseResource {
-    CGLSetCurrentContext(context1);
+    CGLSetCurrentContext(context);
     glDeleteBuffers(1, &vertexBufferId);
     glDeleteBuffers(1, &uvBufferId);
     glDeleteVertexArrays(1, &vertexArrayId);

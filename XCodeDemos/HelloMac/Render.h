@@ -19,19 +19,21 @@ NS_ASSUME_NONNULL_BEGIN
     GLuint vertexArrayId;
     GLuint vertexBufferId;
     GLuint uvBufferId;
-    GLuint textureId;
     GLuint mytexture;
     GLuint offset;
-    CGLContextObj context1;
-    CGLContextObj context2;
-    NSOpenGLContext *nsglContext1;
-    
-    IOSurfaceRef surf;
-    
-}
 
-- (NSOpenGLContext *) CreateContext1;
-- (NSOpenGLContext *) CreateContext2;
+    
+    CGLContextObj context;
+    NSOpenGLContext *nsglContext;
+    
+    @public
+    IOSurfaceRef surf;
+    @public
+    GLuint textureId;
+}
+- (NSOpenGLContext *) CreateContext: (NSOpenGLContext *) context;
+- (IOSurfaceRef) CreateSurf;
+- (GLuint) CreateTextureThroughSurf: (IOSurfaceRef) surf;
 - (void) LoadResource;
 - (void) RenderTriangle;
 - (void) ReleaseResource;

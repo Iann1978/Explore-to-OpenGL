@@ -26,10 +26,11 @@ int main(int argc, const char * argv[]) {
         [app setDelegate:appDelegate];
         
         
-        Render *render = [Render alloc];
-        NSOpenGLContext *nsglContext = [render CreateContext1];
-        //NSOpenGLContext *nsglContext2 = [render CreateContext2];
-        [render LoadResource];
+        Render *render0 = [Render alloc];
+        NSOpenGLContext *nsglContext0 = [render0 CreateContext:nil];
+        [render0 LoadResource];
+        render0->surf = [render0 CreateSurf];
+        render0->textureId = [render0 CreateTextureThroughSurf:render0->surf];
         
         
         
@@ -38,26 +39,31 @@ int main(int argc, const char * argv[]) {
         [win0 setTitle:@"win0"];
         [win0 makeKeyAndOrderFront:win0];
         [win0 makeMainWindow];
-        OpenGLView *view0 = [[OpenGLView alloc] initWithFrame:rc withRender:render withContext:nsglContext];
+        OpenGLView *view0 = [[OpenGLView alloc] initWithFrame:rc withRender:render0 withContext:nsglContext0];
         view0->index = 0;
         [win0 setContentView:view0];
         [win0 setDelegate:appDelegate];
-        appDelegate->view = view0;
+        appDelegate->view0 = view0;
         //[view0 startRender];
         
         
 
-
+        Render *render1 = [Render alloc];
+        NSOpenGLContext *nsglContext1 = [render1 CreateContext:render0->nsglContext];
+        [render1 LoadResource];
+        render1->surf = render0->surf;
+        render1->textureId = [render1 CreateTextureThroughSurf:render1->surf];
         
         // Create other window
-//        NSWindow *win1 = [[NSWindow alloc] initWithContentRect:rc styleMask:uiStyle backing:backingStoreStyle defer:NO];
-//        [win1 setTitle:@"win1"];
-//        [win1 makeKeyAndOrderFront:win1];
-//        [win1 makeMainWindow];
-//        OpenGLView *view1 = [[OpenGLView alloc] initWithFrame:rc withRender:render withContext:nsglContext2];
-//        view1->index = 1;
-//        [win1 setContentView:view1];
-//        [win1 setDelegate:appDelegate];
+        NSWindow *win1 = [[NSWindow alloc] initWithContentRect:rc styleMask:uiStyle backing:backingStoreStyle defer:NO];
+        [win1 setTitle:@"win1"];
+        [win1 makeKeyAndOrderFront:win1];
+        [win1 makeMainWindow];
+        OpenGLView *view1 = [[OpenGLView alloc] initWithFrame:rc withRender:render1 withContext:nsglContext1];
+        view1->index = 1;
+        [win1 setContentView:view1];
+        [win1 setDelegate:appDelegate];
+        appDelegate->view1 = view1;
         
         
         
