@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define GL_SILENCE_DEPRECATION
 #import <OpenGL/gl3.h>
 #import <OpenGL/gl3ext.h>
 

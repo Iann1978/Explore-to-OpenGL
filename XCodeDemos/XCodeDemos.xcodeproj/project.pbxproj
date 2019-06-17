@@ -11,7 +11,6 @@
 		BA25A4F722AF4C3A005A1C2B /* texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA25A4F522AF4C3A005A1C2B /* texture.cpp */; };
 		BA775B172260399C00F0EB77 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA775B162260399C00F0EB77 /* AppDelegate.m */; };
 		BA775B1A2260408700F0EB77 /* OpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA775B192260408700F0EB77 /* OpenGLView.m */; };
-		BAA6D41A22B2126800AEAEB4 /* Render.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA6D41922B2126800AEAEB4 /* Render.m */; };
 		BADA1FB822602F2A0064ED4E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BADA1FB722602F2A0064ED4E /* main.m */; };
 		BADB27A322A8E15900EB6FFA /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BADB27A222A8E15900EB6FFA /* OpenGL.framework */; };
 /* End PBXBuildFile section */
@@ -37,8 +36,6 @@
 		BA775B162260399C00F0EB77 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		BA775B182260408700F0EB77 /* OpenGLView.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; path = OpenGLView.h; sourceTree = "<group>"; };
 		BA775B192260408700F0EB77 /* OpenGLView.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; path = OpenGLView.m; sourceTree = "<group>"; };
-		BAA6D41822B2126800AEAEB4 /* Render.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Render.h; sourceTree = "<group>"; };
-		BAA6D41922B2126800AEAEB4 /* Render.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; path = Render.m; sourceTree = "<group>"; };
 		BADA1FB522602F2A0064ED4E /* HelloMac */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HelloMac; sourceTree = BUILT_PRODUCTS_DIR; };
 		BADA1FB722602F2A0064ED4E /* main.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; path = main.m; sourceTree = "<group>"; };
 		BADB27A222A8E15900EB6FFA /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -85,8 +82,6 @@
 				BA775B192260408700F0EB77 /* OpenGLView.m */,
 				BA2362DD22B0DA4100D529AF /* shader.cpp */,
 				BA2362DE22B0DA4100D529AF /* shader.hpp */,
-				BAA6D41822B2126800AEAEB4 /* Render.h */,
-				BAA6D41922B2126800AEAEB4 /* Render.m */,
 			);
 			path = HelloMac;
 			sourceTree = "<group>";
@@ -156,7 +151,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA2362DF22B0DA4100D529AF /* shader.cpp in Sources */,
-				BAA6D41A22B2126800AEAEB4 /* Render.m in Sources */,
 				BA775B172260399C00F0EB77 /* AppDelegate.m in Sources */,
 				BA25A4F722AF4C3A005A1C2B /* texture.cpp in Sources */,
 				BA775B1A2260408700F0EB77 /* OpenGLView.m in Sources */,

@@ -8,6 +8,7 @@
 #define GL_SILENCE_DEPRECATION
 #import "OpenGLView.h"
 
+
 #import <OpenGL/gl3.h>
 #import <OpenGL/gl3ext.h>
 #import "texture.hpp"
@@ -49,7 +50,7 @@ void main()
 
 @implementation OpenGLView
 
-- (instancetype)initWithFrame:(NSRect)frameRect withRender:(Render *) render withContext:(NSOpenGLContext *) nsglContext;
+- (instancetype)initWithFrame:(NSRect)frameRect;
 {
     NSLog(@"OpenGLView.initWithFrame:\n");
     self = [super initWithFrame:frameRect];
@@ -62,14 +63,14 @@ void main()
     NSOpenGLContext *nsglContext0 = [self CreateContext:nil];
     [self LoadResource];
     self->surf = [self CreateSurf];
-    self->textureId = [self CreateTextureThroughSurf:self->surf];
+    self->texture = [self CreateTextureThroughSurf:self->surf];
     [nsglContext0 setView:self];
     return self;
 }
 -(void)startRender
 {
     auto func = [self]()->void{
-        CGLSetCurrentContext(self->context);
+        CGLSetCurrentContext(self->cglContext);
         //Render *render = self->render;
         while(true)
         {
@@ -140,7 +141,7 @@ void main()
     glActiveTexture(GL_TEXTURE0);
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_RECTANGLE, texture);
-    CGLTexImageIOSurface2D(context, GL_TEXTURE_RECTANGLE, GL_RGBA, 256, 256,
+    CGLTexImageIOSurface2D(cglContext, GL_TEXTURE_RECTANGLE, GL_RGBA, 256, 256,
                            GL_BGRA, GL_UNSIGNED_INT_8_8_8_8_REV, surf, 0);
     glTexParameteri(GL_TEXTURE_RECTANGLE, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_RECTANGLE, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -162,7 +163,7 @@ void main()
     
     NSOpenGLPixelFormat *format = [[NSOpenGLPixelFormat alloc] initWithAttributes:glAttributes];
     nsglContext = [[NSOpenGLContext alloc] initWithFormat:format shareContext:context];
-    self->context = nsglContext.CGLContextObj;
+    self->cglContext = nsglContext.CGLContextObj;
     
     
     
@@ -171,7 +172,7 @@ void main()
 }
 - (void) LoadResource
 {
-    CGLSetCurrentContext(context);
+    CGLSetCurrentContext(cglContext);
     
     static const GLfloat vertexBufferData[] = {
         -1.0f, -1.0f, 0.0f,
@@ -185,23 +186,23 @@ void main()
         0.0f,  1.0f,
     };
     
-    shaderId = CreateShader(vertexSource, fragmentSource);
-    mytexture = glGetUniformLocation(shaderId, "mytexture");
-    offset = glGetUniformLocation(shaderId, "offset");
+    shader = CreateShader(vertexSource, fragmentSource);
+    mytexture = glGetUniformLocation(shader, "mytexture");
+    offset = glGetUniformLocation(shader, "offset");
     
     
     // Generate vertex array
-    glGenVertexArrays(1, &vertexArrayId);
-    glBindVertexArray(vertexArrayId);
+    glGenVertexArrays(1, &vertexarray);
+    glBindVertexArray(vertexarray);
     
     // Generate vertex buffer
-    glGenBuffers(1, &vertexArrayId);
-    glBindBuffer(GL_ARRAY_BUFFER, vertexArrayId);
+    glGenBuffers(1, &vertexarray);
+    glBindBuffer(GL_ARRAY_BUFFER, vertexarray);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertexBufferData), vertexBufferData, GL_STATIC_DRAW);
     
     // Generate uv buffer
-    glGenBuffers(1, &uvBufferId);
-    glBindBuffer(GL_ARRAY_BUFFER, uvBufferId);
+    glGenBuffers(1, &uvbuffer0);
+    glBindBuffer(GL_ARRAY_BUFFER, uvbuffer0);
     glBufferData(GL_ARRAY_BUFFER, sizeof(uvBufferData), uvBufferData, GL_STATIC_DRAW);
     
     
@@ -219,21 +220,21 @@ void main()
     glClearColor(0.0f,1.0f*index,1.0f,1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
     
-    glUseProgram(shaderId);
+    glUseProgram(shader);
     glUniform1f(offset, offsetvalue);
     
     glActiveTexture(GL_TEXTURE0);
     //glBindTexture(GL_TEXTURE0, textureId);
-    glBindTexture(GL_TEXTURE_RECTANGLE, textureId);
+    glBindTexture(GL_TEXTURE_RECTANGLE, texture);
     glUniform1i(mytexture, 0);
     
     
     glEnableVertexAttribArray(0);
-    glBindBuffer(GL_ARRAY_BUFFER, vertexArrayId);
+    glBindBuffer(GL_ARRAY_BUFFER, vertexarray);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
     
     glEnableVertexAttribArray(1);
-    glBindBuffer(GL_ARRAY_BUFFER, uvBufferId);
+    glBindBuffer(GL_ARRAY_BUFFER, uvbuffer0);
     glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, 0);
     
     
@@ -245,10 +246,10 @@ void main()
 }
 
 - (void) ReleaseResource {
-    CGLSetCurrentContext(context);
-    glDeleteBuffers(1, &vertexBufferId);
-    glDeleteBuffers(1, &uvBufferId);
-    glDeleteVertexArrays(1, &vertexArrayId);
-    glDeleteProgram(shaderId);
+    CGLSetCurrentContext(cglContext);
+    glDeleteBuffers(1, &vertexbuffer0);
+    glDeleteBuffers(1, &uvbuffer0);
+    glDeleteVertexArrays(1, &vertexarray);
+    glDeleteProgram(shader);
 }
 @end

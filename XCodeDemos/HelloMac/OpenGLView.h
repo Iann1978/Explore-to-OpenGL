@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "Render.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,30 +15,27 @@ NS_ASSUME_NONNULL_BEGIN
 {
     @public
     int index;
-
-    //CGLContextObj context;
-    //Render *render;
     
     
 
     float timer;
-    GLuint shaderId;
-    GLuint vertexArrayId;
-    GLuint vertexBufferId;
-    GLuint uvBufferId;
+    GLuint shader;
+    GLuint vertexarray;
+    GLuint vertexbuffer0;
+    GLuint uvbuffer0;
     GLuint mytexture;
     GLuint offset;
     
     
-    CGLContextObj context;
+    CGLContextObj cglContext;
     NSOpenGLContext *nsglContext;
     
     @public
     IOSurfaceRef surf;
     @public
-    GLuint textureId;
+    GLuint texture;
 }
-- (instancetype)initWithFrame:(NSRect)frameRect withRender:(Render *) render withContext:(NSOpenGLContext *) nsglContext;
+- (instancetype)initWithFrame:(NSRect)frameRect;
 
 -(void)startRender;
 -(void)shutDown;

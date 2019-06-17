@@ -5,11 +5,11 @@
 //  Created by iann on 2019/4/12.
 //  Copyright © 2019 iann. All rights reserved.
 //
-
+#define GL_SILENCE_DEPRECATION
 #import <Cocoa/Cocoa.h>
 #import "AppDelegate.h"
 #import "OpenGLView.h"
-#import "Render.h"
+
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
@@ -26,11 +26,11 @@ int main(int argc, const char * argv[]) {
         [app setDelegate:appDelegate];
         
         
-        Render *render0 = [Render alloc];
-        NSOpenGLContext *nsglContext0 = [render0 CreateContext:nil];
-        [render0 LoadResource];
-        render0->surf = [render0 CreateSurf];
-        render0->textureId = [render0 CreateTextureThroughSurf:render0->surf];
+//        Render *render0 = [Render alloc];
+//        NSOpenGLContext *nsglContext0 = [render0 CreateContext:nil];
+//        [render0 LoadResource];
+//        render0->surf = [render0 CreateSurf];
+//        render0->textureId = [render0 CreateTextureThroughSurf:render0->surf];
         
         
         
@@ -39,7 +39,7 @@ int main(int argc, const char * argv[]) {
         [win0 setTitle:@"win0"];
         [win0 makeKeyAndOrderFront:win0];
         [win0 makeMainWindow];
-        OpenGLView *view0 = [[OpenGLView alloc] initWithFrame:rc withRender:render0 withContext:nsglContext0];
+        OpenGLView *view0 = [[OpenGLView alloc] initWithFrame:rc];
         view0->index = 0;
         [win0 setContentView:view0];
         [win0 setDelegate:appDelegate];

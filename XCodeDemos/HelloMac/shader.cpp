@@ -5,6 +5,7 @@
 //  Created by Iann on 2019/6/12.
 //  Copyright © 2019 iann. All rights reserved.
 //
+#define GL_SILENCE_DEPRECATION
 #import <OpenGL/gl3.h>
 #import <OpenGL/gl3ext.h>
 #include "shader.hpp"
@@ -26,8 +27,8 @@ GLuint CreateShader(const char *vertShaderSource, const char *fragShaderSource)
         GLchar *buff = new GLchar[infoLen+1];
         buff[infoLen] = 0;
         glGetShaderInfoLog(vertShaderId, infoLen, 0, buff);
-        printf(buff);
-        delete buff;
+        printf("%s", buff);
+        delete[] buff;
     }
     
     // Compile Fragment Shader
@@ -42,8 +43,8 @@ GLuint CreateShader(const char *vertShaderSource, const char *fragShaderSource)
         GLchar *buff = new GLchar[infoLen+1];
         buff[infoLen] = 0;
         glGetShaderInfoLog(fragShaderId, infoLen, 0, buff);
-        printf(buff);
-        delete buff;
+        printf("%s", buff);
+        delete[] buff;
     }
     
     // Link the program
