@@ -62,6 +62,36 @@ void main()
     return [[NSOpenGLContext alloc] initWithFormat:format shareContext:context];
 }
 
+- (GLuint) CreateTextureThroughSurf: (IOSurfaceRef) surf
+{
+    GLuint texture = 0;
+    glActiveTexture(GL_TEXTURE0);
+    glGenTextures(1, &texture);
+    glBindTexture(GL_TEXTURE_RECTANGLE, texture);
+    CGLTexImageIOSurface2D(nsglContext.CGLContextObj, GL_TEXTURE_RECTANGLE, GL_RGBA, 256, 256,
+                           GL_BGRA, GL_UNSIGNED_INT_8_8_8_8_REV, surf, 0);
+    glTexParameteri(GL_TEXTURE_RECTANGLE, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_RECTANGLE, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    return texture;
+}
+
+
+- (void) SetTarget: (IOSurfaceRef) surf
+{
+    CGLSetCurrentContext(nsglContext.CGLContextObj);
+    rendersurf = surf;
+    rendertexture = [self CreateTextureThroughSurf:rendersurf];
+    
+    glGenFramebuffers(1, &framebuffer);
+    glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
+    glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, rendertexture, 0);
+    GLenum drawbuffers[1] = {GL_COLOR_ATTACHMENT0};
+    glDrawBuffers(1, drawbuffers);
+    if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+    {
+        NSLog(@"glCheckFramebufferStatus:\n");
+    }
+}
 - (void) LoadResource
 {
     
@@ -102,9 +132,9 @@ void main()
     NSLog(@"RenderBuffer.RenderTiangle:\n");
     
     float offsetvalue = 0.2f*sin(timer+=0.02f);
-    glBindFramebuffer(GL_FRAMEBUFFER, 0);
-    glViewport(0, 0, 800, 600);
-    glClearColor(0.0f,1.0f*index,1.0f,1.0f);
+    glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
+    glViewport(0, 0, 256, 256);
+    glClearColor(0.0f,0.0f,0.0f,1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
     
     glUseProgram(shader);

@@ -30,10 +30,10 @@ NS_ASSUME_NONNULL_BEGIN
     GLuint offset;
     
     // fbo
-    //GLuint framebuffer;
-    //GLuint rendertexture;
-    //IOSurfaceRef rendersurf;
-    //NSView *view;
+    GLuint framebuffer;
+    GLuint rendertexture;
+    IOSurfaceRef rendersurf;
+    
     
     @public
     NSOpenGLContext *nsglContext;
@@ -43,6 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSOpenGLContext *) CreateContext: (NSOpenGLContext *) context;
 - (void) LoadResource;
 - (void) RenderTriangle;
+- (void) SetTarget: (IOSurfaceRef) surf;
 @end
 
 NS_ASSUME_NONNULL_END

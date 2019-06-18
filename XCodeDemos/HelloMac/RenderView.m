@@ -119,7 +119,7 @@ void main()
 
 - (void) RenderTriangle
 {
-    NSLog(@"RenderBuffer.RenderTiangle:\n");
+    NSLog(@"RenderView.RenderTiangle:\n");
     
     float offsetvalue = 0.2f*sin(timer+=0.02f);
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
