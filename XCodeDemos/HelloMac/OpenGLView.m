@@ -65,16 +65,23 @@ void main()
 //    self->surf = [self CreateSurf];
 //    self->texture = [self CreateTextureThroughSurf:self->surf];
 //    [nsglContext0 setView:self];
+//    
+//    renderBuffer = [RenderBuffer alloc];
+//    renderBuffer->nsglContext = [renderBuffer CreateContext:nil];
+//    [renderBuffer LoadResource];
+//    [renderBuffer->nsglContext setView:self];
+//    
     
-    renderBuffer = [RenderBuffer alloc];
-    renderBuffer->nsglContext = [renderBuffer CreateContext:nil];
-    [renderBuffer LoadResource];
-    [renderBuffer->nsglContext setView:self];
+    renderView = [RenderView alloc];
+    renderView->nsglContext = [renderView CreateContext:nil];
+    [renderView LoadResource];
+    [renderView->nsglContext setView:self];
+    
     return self;
 }
--(void)startRender
+- (void) startRenderBuffer
 {
-    auto func = [self]()->void{
+    auto funcRenderBuffer = [self]()->void{
         CGLSetCurrentContext(self->renderBuffer->nsglContext.CGLContextObj);
         //Render *render = self->render;
         while(true)
@@ -83,7 +90,26 @@ void main()
         }
         
     };
-    thread *th = new thread(func);
+    thread *thRenderBuffer = new thread(funcRenderBuffer);
+}
+
+- (void) startRenderView
+{
+    auto funcRenderView = [self]()->void{
+        CGLSetCurrentContext(self->renderView->nsglContext.CGLContextObj);
+        //Render *render = self->render;
+        while(true)
+        {
+            [self->renderView RenderTriangle];
+        }
+        
+    };
+    thread *thRenderView = new thread(funcRenderView);
+}
+
+-(void)startRender
+{
+    [self startRenderView];
 }
 
 
