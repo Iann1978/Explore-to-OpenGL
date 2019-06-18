@@ -61,8 +61,8 @@ GLuint CreateShader(const char *vertShaderSource, const char *fragShaderSource)
         GLchar  *buff = new GLchar[infoLen + 1];
         buff[infoLen] = 0;
         glGetProgramInfoLog(programId, infoLen, 0, buff);
-        printf(buff);
-        delete buff;
+        printf("%s", buff);
+        delete[] buff;
     }
     
     glDetachShader(programId, vertShaderId);

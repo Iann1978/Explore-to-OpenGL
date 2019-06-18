@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "RenderBuffer.h"
 
 
 NS_ASSUME_NONNULL_BEGIN
@@ -38,6 +39,8 @@ NS_ASSUME_NONNULL_BEGIN
     IOSurfaceRef surf;
     @public
     GLuint texture;
+    
+    RenderBuffer *renderBuffer;
 }
 - (instancetype)initWithFrame:(NSRect)frameRect;
 

@@ -60,21 +60,26 @@ void main()
     
     
     
-    NSOpenGLContext *nsglContext0 = [self CreateContext:nil];
-    [self LoadResource];
-    self->surf = [self CreateSurf];
-    self->texture = [self CreateTextureThroughSurf:self->surf];
-    [nsglContext0 setView:self];
+//    NSOpenGLContext *nsglContext0 = [self CreateContext:nil];
+//    [self LoadResource];
+//    self->surf = [self CreateSurf];
+//    self->texture = [self CreateTextureThroughSurf:self->surf];
+//    [nsglContext0 setView:self];
+    
+    renderBuffer = [RenderBuffer alloc];
+    renderBuffer->nsglContext = [renderBuffer CreateContext:nil];
+    [renderBuffer LoadResource];
+    [renderBuffer->nsglContext setView:self];
     return self;
 }
 -(void)startRender
 {
     auto func = [self]()->void{
-        CGLSetCurrentContext(self->cglContext);
+        CGLSetCurrentContext(self->renderBuffer->nsglContext.CGLContextObj);
         //Render *render = self->render;
         while(true)
         {
-            [self RenderTriangle];
+            [self->renderBuffer RenderTriangle];
         }
         
     };
