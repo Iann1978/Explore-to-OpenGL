@@ -26,6 +26,9 @@ NS_ASSUME_NONNULL_BEGIN
     GLuint mytexture;
     GLuint offset;
     
+    GLuint framebuffer;
+    GLuint rendertexture;
+    
     
     CGLContextObj cglContext;
     NSOpenGLContext *nsglContext;

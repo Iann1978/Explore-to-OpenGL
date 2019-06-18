@@ -206,7 +206,19 @@ void main()
     glBufferData(GL_ARRAY_BUFFER, sizeof(uvBufferData), uvBufferData, GL_STATIC_DRAW);
     
     
+    // Generate frame buffer
+    glGenFramebuffers(1, &framebuffer);
+    glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
     
+    glGenTextures(1, &rendertexture);
+    glBindTexture(GL_TEXTURE_RECTANGLE, rendertexture);
+    glTexImage2D(GL_TEXTURE_RECTANGLE, 0, GL_RGBA, 256, 256, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
+    glTexParameteri(GL_TEXTURE_RECTANGLE, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_RECTANGLE, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    
+    glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, rendertexture, 0);
+    GLenum drawbuffers[1] = {GL_COLOR_ATTACHMENT0};
+    glDrawBuffers(1, drawbuffers);
     
 }
 
@@ -217,7 +229,9 @@ void main()
     
     float offsetvalue = 0.2f*sin(timer+=0.02f);
     
-    glClearColor(0.0f,1.0f*index,1.0f,1.0f);
+    glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
+    glViewport(0,0,256,256);
+    glClearColor(1.0f,0.0f,0.0f,1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
     
     glUseProgram(shader);
@@ -226,6 +240,32 @@ void main()
     glActiveTexture(GL_TEXTURE0);
     //glBindTexture(GL_TEXTURE0, textureId);
     glBindTexture(GL_TEXTURE_RECTANGLE, texture);
+    glUniform1i(mytexture, 0);
+    
+    
+    glEnableVertexAttribArray(0);
+    glBindBuffer(GL_ARRAY_BUFFER, vertexarray);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+    
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, uvbuffer0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, 0);
+    
+    
+    glDrawArrays(GL_TRIANGLES, 0, 3);
+    
+    
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    glViewport(0, 0, 800, 600);
+    glClearColor(0.0f,1.0f*index,1.0f,1.0f);
+    glClear(GL_COLOR_BUFFER_BIT);
+    
+    glUseProgram(shader);
+    glUniform1f(offset, 0);
+    
+    glActiveTexture(GL_TEXTURE0);
+    //glBindTexture(GL_TEXTURE0, textureId);
+    glBindTexture(GL_TEXTURE_RECTANGLE, rendertexture);
     glUniform1i(mytexture, 0);
     
     
