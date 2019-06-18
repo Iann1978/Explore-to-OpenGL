@@ -210,11 +210,16 @@ void main()
     glGenFramebuffers(1, &framebuffer);
     glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
     
-    glGenTextures(1, &rendertexture);
-    glBindTexture(GL_TEXTURE_RECTANGLE, rendertexture);
-    glTexImage2D(GL_TEXTURE_RECTANGLE, 0, GL_RGBA, 256, 256, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
-    glTexParameteri(GL_TEXTURE_RECTANGLE, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_RECTANGLE, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    
+//    glGenTextures(1, &rendertexture);
+//    glBindTexture(GL_TEXTURE_RECTANGLE, rendertexture);
+//    glTexImage2D(GL_TEXTURE_RECTANGLE, 0, GL_RGBA, 256, 256, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
+//    glTexParameteri(GL_TEXTURE_RECTANGLE, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+//    glTexParameteri(GL_TEXTURE_RECTANGLE, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    
+    rendersurf = [self CreateSurf];
+    rendertexture = [self CreateTextureThroughSurf:rendersurf];
+    
     
     glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, rendertexture, 0);
     GLenum drawbuffers[1] = {GL_COLOR_ATTACHMENT0};

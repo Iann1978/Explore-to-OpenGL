@@ -28,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
     
     GLuint framebuffer;
     GLuint rendertexture;
+    IOSurfaceRef rendersurf;
     
     
     CGLContextObj cglContext;
