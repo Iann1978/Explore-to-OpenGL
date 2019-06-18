@@ -24,6 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
     GLuint uvbuffer;
     
     // materail
+    @public
+    IOSurfaceRef texturesurf;
     GLuint texture;
     GLuint shader;
     GLuint mytexture;

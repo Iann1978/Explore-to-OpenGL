@@ -34,10 +34,10 @@ R"SHADER(
 #version 330 core
 in vec2 uv;
 out vec3 color;
-uniform sampler2D mytexture;
+uniform sampler2DRect mytexture;
 void main()
 {
-    color = texture(mytexture, uv).rgb;
+    color = texture(mytexture, uv*256).rgb;
 }
 )SHADER";
 
@@ -62,6 +62,19 @@ void main()
     return [[NSOpenGLContext alloc] initWithFormat:format shareContext:context];
 }
 
+- (GLuint) CreateTextureThroughSurf: (IOSurfaceRef) surf
+{
+    GLuint texture = 0;
+    glActiveTexture(GL_TEXTURE0);
+    glGenTextures(1, &texture);
+    glBindTexture(GL_TEXTURE_RECTANGLE, texture);
+    CGLTexImageIOSurface2D(nsglContext.CGLContextObj, GL_TEXTURE_RECTANGLE, GL_RGBA, 256, 256,
+                           GL_BGRA, GL_UNSIGNED_INT_8_8_8_8_REV, surf, 0);
+    glTexParameteri(GL_TEXTURE_RECTANGLE, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_RECTANGLE, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    return texture;
+}
+
 - (void) LoadResource
 {
     
@@ -71,11 +84,17 @@ void main()
     static const GLfloat vertexBufferData[] = {
         -1.0f, -1.0f, 0.0f,
         1.0f, -1.0f, 0.0f,
-        0.0f,  1.0f, 0.0f,
+        1.0f,  1.0f, 0.0f,
+        -1.0f, -1.0f, 0.0f,
+        1.0f,  1.0f, 0.0f,
+        -1.0f,  1.0f, 0.0f,
     };
     static const GLfloat uvBufferData[] = {
         0.0f, 0.0f,
         1.0f, 0.0f,
+        1.0f,  1.0f,
+        0.0f, 0.0f,
+        1.0f,  1.0f,
         0.0f,  1.0f,
     };
     glGenVertexArrays(1, &vertexarray);
@@ -91,7 +110,8 @@ void main()
     
     
     
-    texture = loadDDS("/Users/iann/Documents/uvtemplate.dds");
+    //texture = loadDDS("/Users/iann/Documents/uvtemplate.dds");
+    texture = [self CreateTextureThroughSurf:texturesurf];
     shader = CreateShader(vertexSource, fragmentSource);
     mytexture = glGetUniformLocation(shader, "mytexture");
     offset = glGetUniformLocation(shader, "offset");
@@ -112,7 +132,7 @@ void main()
     glUniform1f(offset, offsetvalue);
     
     glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, texture);
+    glBindTexture(GL_TEXTURE_RECTANGLE, texture);
     glUniform1i(mytexture, 0);
     
     
@@ -124,7 +144,7 @@ void main()
     glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
     glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, 0);
     
-    glDrawArrays(GL_TRIANGLES, 0, 3);
+    glDrawArrays(GL_TRIANGLES, 0, 6);
     
     glSwapAPPLE();
 }

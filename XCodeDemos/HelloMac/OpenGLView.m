@@ -65,14 +65,17 @@ void main()
 //    self->surf = [self CreateSurf];
 //    self->texture = [self CreateTextureThroughSurf:self->surf];
 //    [nsglContext0 setView:self];
-//    
+//
 //    renderBuffer = [RenderBuffer alloc];
 //    renderBuffer->nsglContext = [renderBuffer CreateContext:nil];
 //    [renderBuffer LoadResource];
 //    [renderBuffer->nsglContext setView:self];
-//    
+//
+    
+    IOSurfaceRef surf = [self CreateSurf];
     
     renderView = [RenderView alloc];
+    renderView->texturesurf = surf;
     renderView->nsglContext = [renderView CreateContext:nil];
     [renderView LoadResource];
     [renderView->nsglContext setView:self];
