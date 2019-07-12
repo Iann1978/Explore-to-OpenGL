@@ -12,6 +12,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "glfw", "..\ext\glfw-3.3\bui
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LuciUI", "LuciUI\LuciUI.vcxproj", "{20B2AF28-7F60-4BD3-B7ED-334BE0C5D4CF}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ForeMethdOfCopyTexture", "ForeMethdOfCopyTexture\ForeMethdOfCopyTexture.vcxproj", "{EE3D5106-95DC-4A86-9402-32B137CE541A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -68,6 +70,22 @@ Global
 		{20B2AF28-7F60-4BD3-B7ED-334BE0C5D4CF}.RelWithDebInfo|x64.Build.0 = Release|x64
 		{20B2AF28-7F60-4BD3-B7ED-334BE0C5D4CF}.RelWithDebInfo|x86.ActiveCfg = Release|Win32
 		{20B2AF28-7F60-4BD3-B7ED-334BE0C5D4CF}.RelWithDebInfo|x86.Build.0 = Release|Win32
+		{EE3D5106-95DC-4A86-9402-32B137CE541A}.Debug|x64.ActiveCfg = Debug|x64
+		{EE3D5106-95DC-4A86-9402-32B137CE541A}.Debug|x64.Build.0 = Debug|x64
+		{EE3D5106-95DC-4A86-9402-32B137CE541A}.Debug|x86.ActiveCfg = Debug|Win32
+		{EE3D5106-95DC-4A86-9402-32B137CE541A}.Debug|x86.Build.0 = Debug|Win32
+		{EE3D5106-95DC-4A86-9402-32B137CE541A}.MinSizeRel|x64.ActiveCfg = Release|x64
+		{EE3D5106-95DC-4A86-9402-32B137CE541A}.MinSizeRel|x64.Build.0 = Release|x64
+		{EE3D5106-95DC-4A86-9402-32B137CE541A}.MinSizeRel|x86.ActiveCfg = Release|Win32
+		{EE3D5106-95DC-4A86-9402-32B137CE541A}.MinSizeRel|x86.Build.0 = Release|Win32
+		{EE3D5106-95DC-4A86-9402-32B137CE541A}.Release|x64.ActiveCfg = Release|x64
+		{EE3D5106-95DC-4A86-9402-32B137CE541A}.Release|x64.Build.0 = Release|x64
+		{EE3D5106-95DC-4A86-9402-32B137CE541A}.Release|x86.ActiveCfg = Release|Win32
+		{EE3D5106-95DC-4A86-9402-32B137CE541A}.Release|x86.Build.0 = Release|Win32
+		{EE3D5106-95DC-4A86-9402-32B137CE541A}.RelWithDebInfo|x64.ActiveCfg = Release|x64
+		{EE3D5106-95DC-4A86-9402-32B137CE541A}.RelWithDebInfo|x64.Build.0 = Release|x64
+		{EE3D5106-95DC-4A86-9402-32B137CE541A}.RelWithDebInfo|x86.ActiveCfg = Release|Win32
+		{EE3D5106-95DC-4A86-9402-32B137CE541A}.RelWithDebInfo|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
