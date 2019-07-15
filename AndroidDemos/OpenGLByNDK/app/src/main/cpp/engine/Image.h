@@ -12,6 +12,7 @@
 
 class Image// : public IRenderable
 {
+public:
     typedef void (*FuncOnClick)();
     GLuint programID_image;
     GLuint vertexbuffer_image;

@@ -17,10 +17,11 @@ void printGLString(const char *name, GLenum s);
 void checkGlError(const char* op);
 class Engine
 {
+    int texture;
 public:
     Engine();
 
-    void init(int w, int h);
+    void init(int w, int h, int texture);
 
     void RenderOneFrame();
 };

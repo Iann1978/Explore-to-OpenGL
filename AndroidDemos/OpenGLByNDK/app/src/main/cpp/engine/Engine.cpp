@@ -101,7 +101,7 @@ Engine::Engine()
 
 }
 Image *image;
-void Engine::init(int w, int h)
+void Engine::init(int w, int h, int texture)
 {
 
     glm::vec3 eye(0,0,0);
@@ -121,6 +121,7 @@ void Engine::init(int w, int h)
     glm::mat4 viewMatrix = glm::lookAt(eye, center, up);
 
     image = new Image("", 0,0,100,100);
+    image->texture = texture;
     setupGraphics(w, h);
 }
 

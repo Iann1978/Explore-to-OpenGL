@@ -28,10 +28,10 @@ Java_com_example_openglbyndk_GL2JNILib_stringFromJNI(
 }
 
 
-extern "C" JNIEXPORT void JNICALL Java_com_example_openglbyndk_GL2JNILib_init(JNIEnv * env, jobject obj,  jint width, jint height)
+extern "C" JNIEXPORT void JNICALL Java_com_example_openglbyndk_GL2JNILib_init(JNIEnv * env, jobject obj,  jint width, jint height, jint texture)
 {
     engine = new Engine();
-    engine->init(width, height);
+    engine->init(width, height, texture);
 }
 
 extern "C" JNIEXPORT void JNICALL Java_com_example_openglbyndk_GL2JNILib_step(JNIEnv * env, jobject obj)
