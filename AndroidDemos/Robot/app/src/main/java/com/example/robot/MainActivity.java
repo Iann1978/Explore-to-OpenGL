@@ -46,30 +46,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig) {
 
-            final int[] compileStatus = new int[1];
-            int vsh = GLES20.glCreateShader(GLES20.GL_VERTEX_SHADER);
-            GLES20.glShaderSource(vsh, VERTEX_SHADER);
-            GLES20.glCompileShader(vsh);
-            GLES20.glGetShaderiv(vsh, GLES20.GL_COMPILE_STATUS, compileStatus, 0);
-
-            int fsh = GLES20.glCreateShader(GLES20.GL_FRAGMENT_SHADER);
-            GLES20.glShaderSource(fsh, FRAGMENT_SHADER);
-            GLES20.glCompileShader(fsh);
-
-            mGLProgram = GLES20.glCreateProgram();
-            GLES20.glAttachShader(mGLProgram, vsh);
-            GLES20.glAttachShader(mGLProgram, fsh);
-            GLES20.glLinkProgram(mGLProgram);
-
-            GLES20.glValidateProgram(mGLProgram);
-
-            final int[] status = new int[1];
-            GLES20.glGetProgramiv(mGLProgram, GLES20.GL_VALIDATE_STATUS, status, 0);
-            Log.d("Robot", "validate shader program: " + GLES20.glGetProgramInfoLog(mGLProgram));
-
-
-
-
+            mGLProgram = Shader.LoadShaderFromSourceCode(VERTEX_SHADER, FRAGMENT_SHADER);
         }
 
         @Override
